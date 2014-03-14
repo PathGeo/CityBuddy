@@ -1,411 +1,261 @@
-﻿
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-	
-	<!--metadata-->
-	<meta property="og:locale" content="en_US"/>
-	<meta property="og:type" content="website"/>
-	<meta property="og:title" content="PathGeo-ElectionPath"/>
-	<meta property="og:description" content="Your social media daily look into the 2014 San Diego Mayoral Campaign"/>
-	<meta property="og:image" content="https://www.pathgeo.com/electionPath/images/metadata/electionPath.png"/>
-	<meta property="og:url" content="https://www.pathgeo.com/electionPath"/>
-	<meta property="og:site_name" content="PathGeo"/>
-	<meta property="article:publisher" content="https://www.facebook.com/pages/PathGeo/274827229311706"/>
-	
-	
-    <title>ElectionPath (powered by PathGeo) provides real-time news and social media analytics for the 2014 Taipei City Mayoral Election</title>
-    <meta charset="utf-8" />
-	<link rel="stylesheet" href="css/Aristo/Aristo.css" />
-	<link rel="stylesheet" href="js/leaflet/leaflet.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="js/leaflet/leaflet.ie.css" /><![endif]-->
-	<!--<link rel="stylesheet" href="js/leaflet/MarkerCluster.css" />
-	<link rel="stylesheet" href="js/leaflet/MarkerCluster.Default.css" />-->
-	<!--<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>-->
-	<!--<link rel="stylesheet" href="css/jquery-tablefixedheader.css" />-->
-	<!--<link rel="stylesheet" href="css/pieChart/dvf.css" />-->
-    <link rel="stylesheet" href="css/main.css" />
-	
-	
-	<!--chart-->
-	<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
-	
-	<!--jQuery-->
-	<script src="js/jquery/jquery-1.7.2.min.js"></script>
-	<script src="js/jquery/jquery-ui-1.8.16.custom.min.js"></script>
-	<script scr='js/jquery/jquery.ui.touch-punch.min.js'></script>
-	<script src='js/jquery/jquery-fixheadertable.min.js'></script>
-	
-	<!--scroll-->
-	<script src='js/jquery/jquery.scrollIt.min.js'></script>
-	
-	<!--gauge-->
-	<script src='js/justGage/raphael.2.1.0.min.js'></script>
-	<script src='js/justGage/justgage.1.0.1.min.js'></script>
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/favicon.ico">
 
-	<!--chart-->
-	<!--[if IE]>
-    <script type="text/javascript" src="js/chart/excanvas.js"></script>
+    <title>HotEvent (powered by Pathgeo)</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script src='js/chart/dygraph-dev.js'></script>
-	
-	<!--leaflet-->
-	<script src="js/leaflet/leaflet.js"></script>
-	<!--<script src="js/leaflet/leaflet.markercluster.js" type="text/javascript"></script>-->
-	<script src="js/leaflet/heatmap.js" type="text/javascript"></script>
-	<script src="js/leaflet/heatmap-leaflet.js" type="text/javascript"></script>
-	<script src="js/leaflet/QuadTree.js" type="text/javascript"></script>
-	<script src="js/pieChart/leaflet-dvf.js" type="text/javascript"></script>
-	
-    <!--wordCloud-->
-    <script src="js/wordcloud/d3.min.js"></script>
-	<script src="js/wordcloud/d3.layout.cloud.js"></script>
-	<script src="js/wordcloud/colorbrewer.v1.min.js"></script>
-    
-	<!--main-->
-	<script src="js/api/pathgeo.layer.js"></script>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">HotEvent</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container-fluid">
+      <div class="row">
+      	
+      	<!--sidebar-->
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div>
+        
+        
+        <!--mainContent-->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Overview</h1>
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+          </div>
+
+          <h2 class="sub-header">Section title</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+                  <td>dolor</td>
+                  <td>sit</td>
+                </tr>
+                <tr>
+                  <td>1,002</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+                  <td>adipiscing</td>
+                  <td>elit</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+                  <td>odio</td>
+                  <td>Praesent</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+                  <td>cursus</td>
+                  <td>ante</td>
+                </tr>
+                <tr>
+                  <td>1,004</td>
+                  <td>dapibus</td>
+                  <td>diam</td>
+                  <td>Sed</td>
+                  <td>nisi</td>
+                </tr>
+                <tr>
+                  <td>1,005</td>
+                  <td>Nulla</td>
+                  <td>quis</td>
+                  <td>sem</td>
+                  <td>at</td>
+                </tr>
+                <tr>
+                  <td>1,006</td>
+                  <td>nibh</td>
+                  <td>elementum</td>
+                  <td>imperdiet</td>
+                  <td>Duis</td>
+                </tr>
+                <tr>
+                  <td>1,007</td>
+                  <td>sagittis</td>
+                  <td>ipsum</td>
+                  <td>Praesent</td>
+                  <td>mauris</td>
+                </tr>
+                <tr>
+                  <td>1,008</td>
+                  <td>Fusce</td>
+                  <td>nec</td>
+                  <td>tellus</td>
+                  <td>sed</td>
+                </tr>
+                <tr>
+                  <td>1,009</td>
+                  <td>augue</td>
+                  <td>semper</td>
+                  <td>porta</td>
+                  <td>Mauris</td>
+                </tr>
+                <tr>
+                  <td>1,010</td>
+                  <td>massa</td>
+                  <td>Vestibulum</td>
+                  <td>lacinia</td>
+                  <td>arcu</td>
+                </tr>
+                <tr>
+                  <td>1,011</td>
+                  <td>eget</td>
+                  <td>nulla</td>
+                  <td>Class</td>
+                  <td>aptent</td>
+                </tr>
+                <tr>
+                  <td>1,012</td>
+                  <td>taciti</td>
+                  <td>sociosqu</td>
+                  <td>ad</td>
+                  <td>litora</td>
+                </tr>
+                <tr>
+                  <td>1,013</td>
+                  <td>torquent</td>
+                  <td>per</td>
+                  <td>conubia</td>
+                  <td>nostra</td>
+                </tr>
+                <tr>
+                  <td>1,014</td>
+                  <td>per</td>
+                  <td>inceptos</td>
+                  <td>himenaeos</td>
+                  <td>Curabitur</td>
+                </tr>
+                <tr>
+                  <td>1,015</td>
+                  <td>sodales</td>
+                  <td>ligula</td>
+                  <td>in</td>
+                  <td>libero</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!--core JavaScript
+    ================================================== -->
+    <script src="js/jquery/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
-	
-	<script>
+    <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 	
-	  ga('create', 'UA-39694033-6', 'pathgeo.com');
+	  ga('create', 'UA-39694033-7', 'pathgeo.com');
 	  ga('send', 'pageview');
 	</script>
-</head>
-
-
-
-<body>	
-	
-	<!-- header-->
-	<div id='header'>
-		<div id='headerContent'>
-			
-			<!--logo-->
-			<a href='https://www.pathgeo.com' id='logo' target='_blank'><img src='images/PathGeo-color.png' id='logo_pathgeo' /></a>
-			
-			<!-- count down-->
-			<div id='countdown'>
-				<label></label>&nbsp; days left till the Mayoral Election
-				<div id='clock'></div>
-			</div>
-		
-			
-			<!-- share-->
-			<div id='share'>
-					<ul>
-						<!--facebook-->
-						<li>
-							<div id="fb-root"></div>
-							<script>(function(d, s, id) {
-							  var js, fjs = d.getElementsByTagName(s)[0];
-							  if (d.getElementById(id)) return;
-							  js = d.createElement(s); js.id = id;
-							  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-							  fjs.parentNode.insertBefore(js, fjs);
-							}(document, 'script', 'facebook-jssdk'));</script>
-							<div class="fb-share-button" data-href="https://www.pathgeo.com/electionpath" data-type='button_count'></div>
-						</li>
-						
-						
-						<!-- twitter-->
-						<li>
-							<a href="https://twitter.com/share" class="twitter-share-button" data-url="https://www.pathgeo.com/electionpath">Tweet</a>
-							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-						</li>
-						
-						
-						<!-- linked -->
-						<li>
-							<script src="//platform.linkedin.com/in.js" type="text/javascript">
-							 lang: en_US
-							</script>
-							<script type="IN/Share" data-counter="right" data-url="https://www.pathgeo.com/electionpath"></script>
-						</li>
-						
-						<!--google+ -->
-						<li>
-							<!-- Place this tag where you want the share button to render. -->
-							<div class="g-plus" data-action="share" data-annotation="bubble"></div>
-							
-							<!-- Place this tag after the last share tag. -->
-							<script type="text/javascript">
-							  (function() {
-							    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-							    po.src = 'https://apis.google.com/js/platform.js';
-							    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-							  })();
-							</script>	
-						</li>
-					</ul>
-			</div>
-				
-				
-	
-		</div>
-	</div>
-	
-	
-	<!--accordion menu-->
-	<div id='navigator'>
-		<div id='navigator-menu'></div>
-		
-		
-		
-	</div>
-	
-
-		
-	<!-- main content-->
-	<div id='mainContent'>
-			
-			
-			<!-- candidates-->
-			<div data-scroll-index="0" class='scroll-index' ></div>
-			<div id='home' class='mainBlock'>
-				
-				<h2 id='title'>
-					ElectionPath<label> provides side-by-side comparison, real-time news, <br>with the top story for <b>the 2014 Taipei City Mayoral Special Election</b></label>
-					<img src='images/main-img-services.png' id='logo_electionpath'/>
-				</h2>
-				
-				<div class='updateTime'>The content has been updated at <label></label> (PST)<!--In order to demonstrate the dynamic changes during the election day, <br>we "froze" the data content on Feb 14, 2014 (two days after the election day). --></div>
-				
-				<ul></ul>
-				
-				
-			</div>
-			
-		
-			
-			
-			
-			
-			<!-- top webpage-->
-			<div data-scroll-index="1" class='scroll-index' ></div>
-			<div id='topWebpage' class='mainBlock' >
-				<h2>Top News <label></label><p>The most popular webpages mentioned in twitter during the last 48 hours</p></h2>
-				
-				<!--candidate info bar-->
-				<div class='candidateBar'><ul></ul></div>
-				
-				<ul></ul>
-			</div>
-			
-			
-			
-			<!-- top retweet-->
-			<div data-scroll-index="2" class='scroll-index' ></div>
-			<div id='topRetweet' class='mainBlock' >
-				<h2>Hot Discussion <label></label><p>The most Retweet in last 48 hours</p></h2>
-				
-				<!--candidate info bar-->
-				<div class='candidateBar'><ul></ul></div>
-				
-				<ul></ul>
-			</div>
-			
-			
-			
-			<!-- top story-->
-			<div data-scroll-index="3" class='scroll-index' ></div>
-			<div id='topStory' class='mainBlock' >
-				<h2>Top Stories searched from Google, Yahoo, and Bing<p>View top story from the Web in different categories</p></h2>
-				
-				<!--tabs category-->
-				<div id='categories' class='tabs'>
-					<ul></ul>
-				</div>
-			</div>
-			
-
-			
-			<!-- candidates-->
-			<div data-scroll-index="4" class='scroll-index' ></div>
-			<div id='topEventDate' class='mainBlock'>
-				<h2>Top Event / Date: The TOP THREE most Important events and dates.<P>Please change the range of dates (gray zone) to see top 3 days in the period and the hottest webpage in those days.</P></h2>
-
-				<!--chartContent-->
-				<div id='chartContent'>
-					<div id='chart' style='width:100%'></div>
-					<div id='chart_queryDate'>Current Search Date: <p></p></div>
-				</div>
-				
-				<!--highlight dates-->
-				<div id='highlightDate'>
-					<div class='candidateBar'><ul></ul></div>
-					
-					<!--loading-->
-					<div id='loading'>
-						<img src='images/loading.gif' />
-					</div>
-				</div>
-			</div>
-			
-			
-			<!-- wordcloud-->
-			<div data-scroll-index="5" class='scroll-index' ></div>
-			<div id='wordcloud' class='mainBlock' >
-				<h2>Word Cloud<p>Most frequent keywords in last 24 hours</p></h2>
-				
-				<!--candidate info bar-->
-				<div class='candidateBar'><ul></ul></div>
-				
-				<ul></ul>
-			</div>
-		
-			
-			
-			<!-- hot location -->	
-			<div data-scroll-index="6" class='scroll-index' ></div>
-			<div id='hotLocation' class='mainBlock'>
-				<h2>Hot Location<p>Coming soon....</p></h2>
-				
-				
-				<!-- map -->
-				<div id='map'></div>
-				
-				
-				<!--candidate info bar -->
-				<!--<div class='candidateBar'><ul></ul></div>-->
-				
-				<!-- info -->
-				<ul></ul>
-			</div>
-			
-			
-			
-			<!-- hot location -->	
-			<div data-scroll-index="7" class='scroll-index' ></div>
-			<div id='media' class='mainBlock'>
-				<h2>The media highlighted ElectionPath on 2013 San Diego Mayor Election<p>Click the following links to see the media</p></h2>
-						
-				<div id='press'>
-					<ul>
-						<li>
-							<div class='video'><iframe width=300 height=195 src="//www.youtube.com/embed/TgzfhV_ZFJ4" frameborder="0" allowfullscreen></iframe></div>
-							<div class='press_description'>
-								<h3><a href='http://www.kpbs.org/news/2013/nov/08/social-media-analysis-and-san-diego-mayors-race/' target='_blank'>Social Media Analysis And The San Diego Mayor’s Race</a><br><label>November 8th, 2013 @ iNews</label></h3>
-								<p>To better predict San Diego’s upcoming mayoral election, a professor at San Diego State University has tapped into the seediest and most vile underbelly of American politics.</p>
-								
-							</div>
-						</li>
-						<!--
-						<li>
-							<div class='video'><iframe width=300 height=195 src="http://launch.newsinc.com/?type=VideoPlayer/Single&widgetId=1&trackingGroup=69016&siteSection=kswb_decision2012&videoId=25354394" frameborder="no" scrolling="no" noresize marginwidth="0" marginheight="0"></iframe></div>
-							<div class='press_description' >
-								<h3><a href='http://fox5sandiego.com/2013/11/13/sdsu-professor-analyzes-social-media-effect-on-mayors-race/#axzz2kfegv2UZ' target='_blank'>SDSU professor analyzes social media effect on mayor’s race</a><br><label>November 11th, 2013 @ Fox5 San Diego</label></h3>
-								<p>Professor Ming Tsou, who works in the geography department at San Diego State University, is keeping a close watch on the race and the buzz created on Twitter for the top contenders — Mike Aguirre, Kevin Faulconer, David Alvarez and Nathan Fletcher.</p>
-							</div>
-						</li>
-						<li>
-							<div class='video'><iframe width=300 height=195  scrolling="no" src="http://www.nbcsandiego.com/templates/nbc_partner_player?cmsID=232444911&amp;videoID=8FldXqqqygvp&amp;origin=nbcsandiego.com&amp;sec=news&amp;subsec=local&amp;width=300&amp;height=195&amp;turl=http%3A%2F%2Flocalhost%2Fgithub%2Felectionpath%2F&amp;ourl=http%3A%2F%2Flocalhost&amp;lp=1" style="border: none; "></iframe></script></div>
-							<div class='press_description'>
-								<h3><a href='http://www.nbcsandiego.com/news/local/mayor-special-election-update-232434291.html' target='_blank'>Mayoral Election: Turnout Forecast Downgraded</a><br><label>November 18th, 2013 @ NBC San Diego</label></h3>
-								<p>The race is the subject of social media tracking by Prof. Ming Tsou and a team of researchers at San Diego State University.
-									They’re analyzing Twitter traffic generated by, and surrounding, the four major candidates -- and looking to establish a correlation between their data and the actual outcome of the election.
-								</p>
-							</div>
-						</li>
-						-->
-						<!--
-						<li>
-							<div class='video'></div>
-							<div class='press_description' onclick='window.open("http://www.kusi.com/video?clipId=9529474&autostart=true")'>
-								<h3>How this "social radar" technology can provide insights on the election <img src='images/kusi.jpg' title=''></h3>
-								<p></p>
-							</div>
-						</li>	
-						-->
-					</ul>
-				</div>
-			</div>
-
-			
-			<!--user feedback-->
-			<div data-scroll-index="8" class='scroll-index' ></div>
-			<div id='feedback' class='mainBlock' >
-				<h2>User Feedback<p>Please tell us what you like or what you don't like ElectionPath</p></h2>
-			
-				<form action="https://docs.google.com/forms/d/1kOGLA8tBmHVcFxmSYQlgTs-xncEdJ-UvUIgU9K2ncXA/formResponse" method="POST" id="ss-form" target="_self" onsubmit=""><ol style="padding-left: 0">
-					<textarea name="entry.1715933675" rows="8" cols="0" class="ss-q-long" id="entry_1715933675" dir="auto" aria-label="Please tell us what you think  " aria-required="true" required=""></textarea>
-					
-					<input type="submit" name="submit" value="Submit" id="ss-submit">
-				</form>
-			
-			</div>
-
-			
-			
-			<!--<div class='hr'></div>-->
-			<!--footer-->
-			<div id='footer'>
-				<ul>
-					<li><a href='https://www.pathgeo.com' target='_blank'><img src='images/PathGeo-color.png' style='width:200px; '/></a></li>
-					<li>
-						<ul id='contactInfo'>
-							<li>PathGeo is a Spinoff of a $1.3 million National Science Foundation grant to San Diego State University</li>
-							<li>Contact: <a href='mailto:info@pathgeo.com'>info@pathgeo.com</a>
-								<ul id='contactSocialMedia'>
-									<li><a href='https://www.facebook.com/pages/PathGeo/274827229311706' target='_blank'><img src='images/1383040715_social_3.png' title='Facebook' /></a></li>
-									<li><a href='https://twitter.com/PathGeo' target='_blank'><img src='images/1383041016_social_8.png' title='Twitter' /></a></li>
-									<li><a href='http://www.linkedin.com/company/pathgeo' target='_blank'><img src='images/1383040971_social_7.png' title='linkedin' /></a></li>
-									<li><a href='https://plus.google.com/113145853913642679086/posts' target='_blank'><img src='images/1383040961_social_0.png' title='google+' /></a></li>
-								</ul>
-							</li>
-						</ul>	
-					</li>
-				</ul>
-				
-				
-				
-			</div>
-	</div>
-	
-	
-	
-
-	
-	
-	
-	
-	
-
-	
-
-	<!--dialog table-->
-	<div id='dialog_table' class='dialog'></div>
-	
-	
-	<!--dialog loading-->
-	<div id='dialog_loading' class='dialog'>
-		<h3>Loading.......</h3>
-		<img src='images/loading.gif'/>
-	</div>
-      
-	  
-	<!--dialog electionResult-->
-	<div id='dialog_electionResult' class='dialog'>
-		<h1>ElectionPath sucessfully predicted San Diego Mayoral Special Election on Nov. 19th, 2013</h1>
-		<p>
-		ElectionPath can provide insights and assessment for your campaign activities with measurable outcomes. The results of San Diego Mayoral Special Election might be a big surprise for many polling firms and politic analysts.  But it is not a surprise at all for ElectionPath.  When people visited the ElectionPath Web App in the early morning of November 19, they saw the following numbers:  Faulconer: 77, Alvarez: 58, Fletcher: 52 (mentioned yesterday), which were approximately matched the real result on November 19th: Faulconer: #1 (43%), Alvarez: #2 (26%), and Fletcher: #3 (24%).
-		</p>
-		<h3>When every traditional polling firm went wrong, ElectionPath got the right number and shows the right path this time. </h3>
-		<ul>
-			<li><a href='http://www.kpbs.org/news/2013/nov/08/social-media-analysis-and-san-diego-mayors-race/' target='_blank'><img src='images/inews.jpg'><br><b>Social Media Analysis And The San Diego Mayor’s Race</b></a></li>
-			<li><a href='http://fox5sandiego.com/2013/11/13/sdsu-professor-analyzes-social-media-effect-on-mayors-race/#axzz2kfegv2UZ' target='_blank'><img src='images/Fox5_sandiego.png'><br><b>SDSU professor analyzes social media effect on mayor’s race</b></a></li>
-			<li><a href='http://www.nbcsandiego.com/news/local/mayor-special-election-update-232434291.html' target='_blank'><img src='images/nbc_sandiego.png'><br><b>Mayoral Election: Turnout Forecast Downgraded</b></a></li>
-			<li><a href='http://www.kusi.com/video?clipId=9529474&autostart=true' target='_blank'><img src='images/kusi.jpg'><br><b>How this "social radar" technology can provide insights on the election</b></a></li>
-		</ul>
-		<p>
-		<b>In order to build a sustainable business model for PathGeo, we temporally put some information offline. Please <a href='https://www.pathgeo.com/?page_id=90' target='_blank'>CONTACT US</a> for more information.</b>
-		</p>
-	</div>    
-	
-</body>
+  </body>
 </html>
+
+
+
+
