@@ -1,26 +1,39 @@
-
-
+/*
+ * general
+ */
+body {padding-top: 50px;}
+ul {list-style:none; padding:0px;  }
 
 
 
 /*
- * Base structure
+ * brand
  */
+.navbar-brand {color:#FD4600 !important; }
 
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 50px;
-}
 
 
 /*
- * Global add-ons
+ * Main content
  */
 
-.sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+.main {padding: 20px;}
+@media (min-width: 768px) {
+  .main {padding-right: 40px;padding-left: 40px;}
 }
+.main .page-header {margin-top: 0;}
+
+#searchResult > li {height:200px; border:1px solid #f1f1f1; border-radius:5px; margin:10px 0px 10px 0px; position:relative; padding:20px; }
+#searchResult > li:hover {box-shadow:5px 5px 10px #cccccc; }
+
+.result-image {max-width:30%; width:30%; float:left;}
+.result-info {max-width:70%; width:70%; float:right; padding:0px 20px 0px 20px; }
+.result-social {position:absolute; top:0px; right:20px; }
+.result-more {position:absolute; top:70px; right:0px; width:40px; }
+.result-more:hover {cursor:pointer; }
+
+
+
 
 
 /*
@@ -47,6 +60,7 @@ body {
   }
 }
 
+
 /* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */
@@ -63,39 +77,3 @@ body {
 }
 
 
-/*
- * Main content
- */
-
-.main {
-  padding: 20px;
-}
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
-}
-.main .page-header {
-  margin-top: 0;
-}
-
-
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.placeholders h4 {
-  margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
-}
