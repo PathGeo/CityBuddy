@@ -1,0 +1,32 @@
+[
+	{
+		"id":"",
+		"name":"Cosmic Run San Diego",
+		"time":"Saturday, March 22nd",
+		"location":"Qualcomm Stadium",
+		"latlon":{},
+		"url":{
+			"website":"http://cosmicworld.com/locations/san-diego/",
+			"facebook":"",
+			"twitter":"",
+			"instagram":""
+		},
+		"thumbnail":"http://cosmicworld.com/static/img/random-photo-4.jpg",
+		"description":"The Boys & Girls Clubs of Greater San Diego CHANGES LIVES through quality youth programs and guidance in a safe, affordable and fun environment. Great futures have been starting here for over 70 years. We serve youth ages 5-18 years old with programs that promote ACADEMIC SUCCESS, CHARACTER DEVELOPMENT and HEALTHY LIFESTYLE at 17 community-based sites county-wide. We are making a difference in the lives of San Diego future leaders - our youth!"
+	},
+	{
+		"id":"",
+		"name":"Cosmic Run San Diego",
+		"time":"Saturday, March 22nd",
+		"location":"Qualcomm Stadium",
+		"latlon":{},
+		"url":{
+			"website":"http://cosmicworld.com/locations/san-diego/",
+			"facebook":"",
+			"twitter":"",
+			"instagram":""
+		},
+		"thumbnail":"http://cosmicworld.com/static/img/random-photo-4.jpg",
+		"description":"The Boys & Girls Clubs of Greater San Diego CHANGES LIVES through quality youth programs and guidance in a safe, affordable and fun environment. Great futures have been starting here for over 70 years. We serve youth ages 5-18 years old with programs that promote ACADEMIC SUCCESS, CHARACTER DEVELOPMENT and HEALTHY LIFESTYLE at 17 community-based sites county-wide. We are making a difference in the lives of San Diego future leaders - our youth!"
+	}
+]

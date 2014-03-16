@@ -1,3 +1,11 @@
+//global variable
+var app={
+	searchResult:null,
+	testmode:true
+}
+
+
+
 
 
 $(function(){
@@ -26,14 +34,17 @@ $(function(){
  * @param {String location
  */
 function searchEvent(location){
-	var json={};
-	//$.getJSON(url, function(json){
-		//if(json){
+	var url=(app.testmode)?"db/searchEvent.json":"ws/searchEvent.py?location="+location+"&time=&category=";
+	
+	//search event
+	$.getJSON(url, function(json){
+		if(json){
+			app.searchResult=json;
+			
 			//generate search list
 			showSearchResult(json);
-		//}
-		
-	//});
+		}	
+	});
 }
 
 
@@ -43,29 +54,58 @@ function searchEvent(location){
  * @param {Object} json
  */
 function showSearchResult(json){
+	var html=''
 	
-	json.description="The Boys & Girls Clubs of Greater San Diego CHANGES LIVES through quality youth programs and guidance in a safe, affordable and fun environment. Great futures have been starting here for over 70 years. We serve youth ages 5-18 years old with programs that promote ACADEMIC SUCCESS, CHARACTER DEVELOPMENT and HEALTHY LIFESTYLE at 17 community-based sites county-wide. We are making a difference in the lives of San Diego future leaders - our youth!";
-	json.description=String(json.description).substr(0, 300) + '.....';
-	
-	var html='<li>'+
-			 	'<img class="result-image" src="http://cosmicworld.com/static/img/random-photo-4.jpg" />'+
-			 	'<div class="result-info">'+
-			 		'<div class="result-name"><a href="http://cosmicworld.com/locations/san-diego/" target="_blank">Cosmic Run San Diego</a></div>'+
-			 		'<div class="result-time">Saturday, March 22nd</div>'+
-			 		'<div class="result-location">Qualcomm Stadium</div>'+
-			 		'<div class="result-social">social</div>'+
-			 		'<div class="result-description">'+json.description +'</div>'+
-			 	'</div>'+
-			 	'<img class="result-more" src="images/1394835495_information-frame_blue.png" />'+
+	$.each(json, function(i, evt){
+		evt.thumbnail=evt.thumbnail || "images/1394974803_plan.png";
+		var description=String(evt.description).substr(0, 300) + '.....';
+		
+		//html
+		html='<li>'+
+				 '<img class="result-image" src="' +evt.thumbnail+ '" />'+
+				 '<div class="result-info">'+
+				 	'<div class="result-name">' +((evt.url && evt.url.wesbsite)?"<a href='"+evt.url.website+"' target='_blank'>"+evt.name+"</a>":evt.name)+'</div>'+
+				 	'<div class="result-time">'+evt.time+'</div>'+
+				 	'<div class="result-location">'+evt.location+'</div>'+
+				 	'<div class="result-social">social</div>'+
+				 	'<div class="result-description">'+description+'</div>'+
+				 '</div>'+
+				 '<img class="result-more" src="images/1394835495_information-frame_blue.png" data-id="'+i+'" />'+
 			 '</li>';
-	
-	$('#searchResult').append(html);
-	
-	
-	$('#searchResult .result-more').click(function(){
-		$('.popup').modal('show');
+		
+		$('#searchResult').append(html);
 	})
+	
+	
+	//click event on result-more class
+	$('#searchResult .result-more').click(function(){
+		var $this=$(this);
+		var id=$this.attr('data-id');
+		
+		if(id){
+			showPopup(app.searchResult[id]);
+		}
+	});
 }
 
+
+
+/**
+ * showPopup 
+ * @param {Object} obj Event obj
+ */
+function showPopup(obj){
+	var $popup=$("#eventDetail");
+	
+	//popup title
+	$popup.find('.modal-title').html(obj.name);
+	
+	//popup body
+	var html=obj.description;
+	$popup.find('.modal-body').html(html)
+	
+	//show popup
+	$('.popup').modal('show');
+}
 
 
