@@ -1,6 +1,7 @@
 import requests, json
 from datetime import datetime
-
+from pymongo import MongoClient
+col=MongoClient().cityBuddy.event
 
 print ''
 
@@ -17,45 +18,58 @@ j=res.json()
 
 
 
+#functions
+#checkMongo
+def existInMongo(id):
+    exist=col.find_one({'id':id})
+
+    if(exist):
+        return True
+    else:
+        return False
+
+
+
 #parse each event
 deletes=['time_tbd', 'links', 'stats', 'date_tbd', 'score', 'datetime_tbd']
 results=[]
 for evt in j['events']:
 
     try:
-        #delete attribute in evt object
-        for d in deletes:
-            del evt[d]
+        #if id exists in mongodb, ignore it
+        if(existInMongo(evt['id'])==False):
 
-        #change attribute
-        evt['categories']=evt['taxonomies']
-        del evt['taxonomies']
+            #delete attribute in evt object
+            for d in deletes:
+                del evt[d]
 
-        evt['venue']['latlon']=evt['venue']['location']
-        del evt['venue']['location']
+            #change attribute
+            evt['categories']=evt['taxonomies']
+            del evt['taxonomies']
+
+            evt['venue']['latlon']=evt['venue']['location']
+            del evt['venue']['location']
 
 
-        #add attribute
-        evt['source']='seatGeek'
-        evt['reviews']={}
-        evt['access_utc']=str(datetime.utcnow())
+            #add attribute
+            evt['source']='seatGeek'
+            evt['reviews']={}
+            evt['access_utc']=str(datetime.utcnow())
 
-        results.append(evt)
+            results.append(evt)
 
         
     except Exception, e:
-	print '[ERROR] Parsing events from Seatgeek results'
-	print json.dumps(str(e))
+        print '[ERROR] Parsing events from Seatgeek results'
+        print json.dumps(str(e))
 
 
 #save in mongodb
-from pymongo import MongoClient
-col=MongoClinet().cityBuddy.event
-col.insert(results)
+if(len(results)!=0):
+    col.insert(results)
+    print 'Successfully get event from SeatGeek at ' + str(datetime.now())
+else:
+    print '[ERROR] No results'
 
-
-
-
-print json.dumps(results)
 
 
