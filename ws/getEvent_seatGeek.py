@@ -44,6 +44,8 @@ LOGGER.info(json.dumps(j['meta']))
 #parse each event
 deletes=['time_tbd', 'links', 'stats', 'date_tbd', 'score', 'datetime_tbd']
 results=[]
+dates=["datetime_local", "visible_until_utc", "datetime_utc","created_at","announce_date"]
+splits=[]
 for evt in j['events']:
 
     try:
@@ -72,6 +74,11 @@ for evt in j['events']:
             evt['reviews']={}
             evt['access_utc']=str(datetime.utcnow())
 
+            #change date format
+            for date in dates:
+                splits=evt[date].replace("T", " ")
+
+                
             results.append(evt)
         
         

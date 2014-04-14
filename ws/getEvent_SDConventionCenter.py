@@ -47,8 +47,8 @@ for evt in j['results']['collection1']:
 
         #date
         dates=re.split('\xa0-\xa0',evt['date'])
-        event['datetime_local']=dateParser.parse(dates[0]).isoformat() #convert time to iso format
-        event['endtime_local']=dateParser.parse(dates[1]).isoformat()
+        event['datetime_local']=dateParser.parse(dates[0]).isoformat().replace("T"," ") #convert time to iso format
+        event['endtime_local']=dateParser.parse(dates[1]).isoformat().replace("T"," ")  #convert time to iso format
         
 
         category['name']=evt['type']
@@ -57,9 +57,9 @@ for evt in j['results']['collection1']:
         results.append(event)
     except Exception, e:
         #log how many new events
-        LOGGER.info('[ERROR] Parsing events from Seatgeek results: '+ str(e))
+        LOGGER.info('[ERROR] Parsing events from SD Convention Center results: '+ str(e))
 
-        print '[ERROR] Parsing events from Seatgeek results'
+        print '[ERROR] Parsing events from SD Convention Center results'
         print json.dumps(str(e))
 
 
@@ -67,9 +67,10 @@ for evt in j['results']['collection1']:
 if(len(results)!=0):
     #log how many new events
     LOGGER.info('There are ' + str(len(results)) + ' events added in the mongodb')
-    
+
+    print json.dumps(results)
     #col.insert(results)
-    print 'Successfully get event from SeatGeek at ' + str(datetime.now())
+    print 'Successfully get event from SD Convention center at ' + str(datetime.now())
 
 
 else:

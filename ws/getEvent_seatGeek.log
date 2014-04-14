@@ -7317,3 +7317,28 @@
 2014-04-11 15:06:56,905 INFO ------------------------------------------------------------
 2014-04-11 15:06:58,052 INFO {"per_page": 10000, "total": 781, "took": 59, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
 2014-04-11 15:06:58,111 INFO There are 29 events added in the mongodb
+2014-04-12 02:00:12,125 INFO ------------------------------------------------------------
+2014-04-12 02:00:12,188 INFO START GETTING EVENTS FROM SEATGEEK  AT 2014-04-12 02:00:12.189000
+2014-04-12 02:00:12,188 INFO ------------------------------------------------------------
+2014-04-12 02:00:13,591 INFO {"per_page": 10000, "total": 767, "took": 56, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
+2014-04-12 02:00:13,730 INFO There are 0 events added in the mongodb
+2014-04-13 02:00:22,178 INFO ------------------------------------------------------------
+2014-04-13 02:00:22,191 INFO START GETTING EVENTS FROM SEATGEEK  AT 2014-04-13 02:00:22.192000
+2014-04-13 02:00:22,191 INFO ------------------------------------------------------------
+2014-04-13 02:00:23,828 INFO {"per_page": 10000, "total": 769, "took": 54, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
+2014-04-13 02:00:23,918 INFO There are 0 events added in the mongodb
+2014-04-14 02:00:21,348 INFO ------------------------------------------------------------
+2014-04-14 02:00:21,437 INFO START GETTING EVENTS FROM SEATGEEK  AT 2014-04-14 02:00:21.437000
+2014-04-14 02:00:21,437 INFO ------------------------------------------------------------
+2014-04-14 02:00:24,842 INFO {"per_page": 10000, "total": 765, "took": 25, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
+2014-04-14 02:00:25,009 INFO There are 0 events added in the mongodb
+2014-04-14 11:58:39,221 INFO ------------------------------------------------------------
+2014-04-14 11:58:39,229 INFO START GETTING EVENTS FROM SEATGEEK  AT 2014-04-14 11:58:39.229000
+2014-04-14 11:58:39,229 INFO ------------------------------------------------------------
+2014-04-14 11:58:40,680 INFO {"per_page": 10000, "total": 778, "took": 47, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
+2014-04-14 11:58:40,769 INFO There are 17 events added in the mongodb
+2014-04-14 12:03:00,921 INFO ------------------------------------------------------------
+2014-04-14 12:03:00,921 INFO START GETTING EVENTS FROM SEATGEEK  AT 2014-04-14 12:03:00.922000
+2014-04-14 12:03:00,923 INFO ------------------------------------------------------------
+2014-04-14 12:03:02,046 INFO {"per_page": 10000, "total": 778, "took": 29, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
+2014-04-14 12:03:02,105 INFO There are 17 events added in the mongodb
