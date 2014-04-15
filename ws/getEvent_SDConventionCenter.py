@@ -1,4 +1,4 @@
-import requests, json, time, cgi, dateutil.parser, re
+import requests, json, time, cgi, dateutil.parser, re, pytz
 from datetime import datetime, timedelta
 from pymongo import MongoClient
 from cityBuddy import *
@@ -34,6 +34,12 @@ LOGGER.info(json.dumps(j))
 results=[]
 event={}
 category={}
+
+#timezone
+utc=pytz.timezone("UTC")
+local=pytz.timezone("America/Los_Angeles")
+
+
 for evt in j['results']['collection1']:
 
     try:
@@ -47,8 +53,14 @@ for evt in j['results']['collection1']:
 
         #date
         dates=re.split('\xa0-\xa0',evt['date'])
-        event['datetime_local']=dateParser.parse(dates[0]).isoformat().replace("T"," ") #convert time to iso format
-        event['endtime_local']=dateParser.parse(dates[1]).isoformat().replace("T"," ")  #convert time to iso format
+        event['datetime_start_local']=dateParser.parse(dates[0]).isoformat().replace("T"," ") #convert time to iso format
+        event['datetime_end_local']=dateParser.parse(dates[1]).isoformat().replace("T"," ")  #convert time to iso format
+
+      
+        
+        #change timezone
+        event['datetime_start_utc']=local.localize(dateParser.parse(event["datetime_start_local"]), is_dst=None).astimezone(utc).strftime("%Y-%m-%d %H:%M:%S")
+        event['datetime_end_utc']=local.localize(dateParser.parse(event["datetime_end_local"]), is_dst=None).astimezone(utc).strftime("%Y-%m-%d %H:%M:%S")
         
 
         category['name']=evt['type']

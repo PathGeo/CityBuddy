@@ -7342,3 +7342,35 @@
 2014-04-14 12:03:00,923 INFO ------------------------------------------------------------
 2014-04-14 12:03:02,046 INFO {"per_page": 10000, "total": 778, "took": 29, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
 2014-04-14 12:03:02,105 INFO There are 17 events added in the mongodb
+2014-04-14 15:15:01,880 INFO ------------------------------------------------------------
+2014-04-14 15:15:01,884 INFO START GETTING EVENTS FROM SEATGEEK  AT 2014-04-14 15:15:01.885000
+2014-04-14 15:15:01,884 INFO ------------------------------------------------------------
+2014-04-14 15:15:03,160 INFO {"per_page": 10000, "total": 778, "took": 38, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
+2014-04-14 15:15:10,223 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,242 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,265 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,272 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,278 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,283 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,289 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,296 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,302 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,309 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,321 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,328 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,334 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,341 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,346 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,352 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,358 INFO [ERROR] Parsing events from Seatgeek results: name 'parser' is not defined
+2014-04-14 15:15:10,375 INFO There are 0 events added in the mongodb
+2014-04-14 15:16:36,686 INFO ------------------------------------------------------------
+2014-04-14 15:16:36,687 INFO START GETTING EVENTS FROM SEATGEEK  AT 2014-04-14 15:16:36.687000
+2014-04-14 15:16:36,687 INFO ------------------------------------------------------------
+2014-04-14 15:16:37,737 INFO {"per_page": 10000, "total": 778, "took": 26, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
+2014-04-14 15:16:44,792 INFO There are 17 events added in the mongodb
+2014-04-14 15:17:28,938 INFO ------------------------------------------------------------
+2014-04-14 15:17:28,940 INFO START GETTING EVENTS FROM SEATGEEK  AT 2014-04-14 15:17:28.940000
+2014-04-14 15:17:28,940 INFO ------------------------------------------------------------
+2014-04-14 15:17:29,763 INFO {"per_page": 10000, "total": 778, "took": 26, "page": 1, "geolocation": {"city": "San Diego", "display_name": "San Diego, CA", "country": "US", "lon": -117.1625, "range": "40mi", "state": "CA", "postal_code": "92101", "lat": 32.715}}
+2014-04-14 15:17:36,515 INFO There are 17 events added in the mongodb

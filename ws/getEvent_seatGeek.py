@@ -1,4 +1,4 @@
-import requests, json, time, cgi
+import requests, json, time, cgi,pytz, dateutil.parser
 from datetime import datetime, timedelta
 from pymongo import MongoClient
 from cityBuddy import *
@@ -45,7 +45,14 @@ LOGGER.info(json.dumps(j['meta']))
 deletes=['time_tbd', 'links', 'stats', 'date_tbd', 'score', 'datetime_tbd']
 results=[]
 dates=["datetime_local", "visible_until_utc", "datetime_utc","created_at","announce_date"]
-splits=[]
+
+
+#timezone
+utc=pytz.timezone("UTC")
+local=pytz.timezone("America/Los_Angeles")
+parser=dateutil.parser
+                
+
 for evt in j['events']:
 
     try:
@@ -76,9 +83,27 @@ for evt in j['events']:
 
             #change date format
             for date in dates:
-                splits=evt[date].replace("T", " ")
+                evt[date]=evt[date].replace("T", " ")
 
-                
+
+            #add 'datetime_start_utc', 'datetime_start_local', 'datatime_end_utc', 'datetime_end_local'
+            evt["datetime_start_utc"]=evt["datetime_utc"]
+            evt["datetime_end_utc"]=evt["visible_until_utc"]
+            evt["datetime_start_local"]=evt["datetime_local"]
+
+            #convert utc time to local
+            utctime=utc.localize(parser.parse(evt["datetime_end_utc"]), is_dst=None)
+            if "timezone" in evt["venue"] and evt["venue"]["timezone"]!="":
+                    local=local=pytz.timezone(evt["venue"]["timezone"])
+            localtime=utctime.astimezone(local)
+            evt["datetime_end_local"]=localtime.strftime ("%Y-%m-%d %H:%M:%S")
+
+            #del redundant datetime properties
+            del evt["datetime_utc"]
+            del evt["visible_until_utc"]
+            del evt["datetime_local"]
+            
+            #push evt into results array
             results.append(evt)
         
         
