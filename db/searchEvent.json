@@ -1,32 +1,146 @@
 [
 	{
 		"id":"",
-		"name":"Cosmic Run San Diego",
-		"time":"Saturday, March 22nd",
-		"location":"Qualcomm Stadium",
-		"latlon":{},
-		"url":{
-			"website":"http://cosmicworld.com/locations/san-diego/",
-			"facebook":"",
-			"twitter":"",
-			"instagram":""
+		"name":"Blessthefall",
+		"date":"Wednesday, May 14th",
+		"time":"8:30PM",
+		"venue":{
+			"name":"Soma",
+			"url":"https://www.google.com/search?sa=X&rlz=1C1GGGE_enUS454US586&es_sm=93&biw=1920&bih=989&q=soma&stick=H4sIAAAAAAAAAGOovnz8BQMDAx8HsxKXfq6-gVGRcXKyaWtt-EPvWV4uZfEXk3-65x_9vk18EgCj5cDeKwAAAA&ei=fDttU5mbLsqJogTVnYLwCQ&ved=0CJkBEDEwAA",
+			"address":"3350 Sports Arena Blvd, San Diego, CA",
+			"latlon":[],
+			"timezone":""
 		},
-		"thumbnail":"http://cosmicworld.com/static/img/random-photo-4.jpg",
-		"description":"The Boys & Girls Clubs of Greater San Diego CHANGES LIVES through quality youth programs and guidance in a safe, affordable and fun environment. Great futures have been starting here for over 70 years. We serve youth ages 5-18 years old with programs that promote ACADEMIC SUCCESS, CHARACTER DEVELOPMENT and HEALTHY LIFESTYLE at 17 community-based sites county-wide. We are making a difference in the lives of San Diego future leaders - our youth!"
+		"categories": [
+			{
+				"parent_id": null,
+				"id": 2000000,
+				"name": "music"
+			}
+		],
+		"thumbnail":"http://www.breakdownmusicpress.com/wp-content/uploads/2012/10/BLESSTHEFALL.jpg",
+		"description":"Blessthefall is an American metalcore band from Phoenix, Arizona, signed to Fearless Records. The band was founded in 2003 by guitarist Mike Frisby, drummer Matt Traynor, and bassist Jared Warth.",
+		"performers": [
+			{
+				"name": "Reverend Horton Heat",
+				"short_name": "Reverend Horton Heat",
+				"url": "http://seatgeek.com/reverend-horton-heat-tickets",
+				"type": "",
+				"image": "http://cdn.chairnerd.com/images/performers-landscape/reverend-horton-heat-d64b49/1528/huge.jpg",
+				"images": {
+					"huge": "http://cdn.chairnerd.com/images/performers-landscape/reverend-horton-heat-d64b49/1528/huge.jpg",
+					"medium": "http://cdn.chairnerd.com/images/performers/1528/reverend-horton-heat-079864/medium.jpg",
+					"large": "http://cdn.chairnerd.com/images/performers/1528/reverend-horton-heat-ece5af/large.jpg",
+					"small": "http://cdn.chairnerd.com/images/performers/1528/reverend-horton-heat-1ea0b6/small.jpg"
+				},
+				"id": 1528
+			}
+		],
+		"url": "http://www.songkick.com/concerts/19293724-blessthefall-at-soma",
+		"reviews": {
+			"rank":4,
+			"twitter": [
+				{}
+			],
+			"cyberdiscovery": [
+				{}
+			]
+		}
 	},
 	{
 		"id":"",
-		"name":"Cosmic Run San Diego",
-		"time":"Saturday, March 22nd",
-		"location":"Qualcomm Stadium",
-		"latlon":{},
-		"url":{
-			"website":"http://cosmicworld.com/locations/san-diego/",
-			"facebook":"",
-			"twitter":"",
-			"instagram":""
+		"name":"We Are Scientists",
+		"date":"Saturday, May 10th",
+		"time":"8:30PM",
+		"venue":{
+			"name":"The Casbah",
+			"url":"",
+			"address":"2501 Kettner Blvd, San Diego, CA",
+			"latlon":[],
+			"timezone":""
 		},
-		"thumbnail":"http://cosmicworld.com/static/img/random-photo-4.jpg",
-		"description":"The Boys & Girls Clubs of Greater San Diego CHANGES LIVES through quality youth programs and guidance in a safe, affordable and fun environment. Great futures have been starting here for over 70 years. We serve youth ages 5-18 years old with programs that promote ACADEMIC SUCCESS, CHARACTER DEVELOPMENT and HEALTHY LIFESTYLE at 17 community-based sites county-wide. We are making a difference in the lives of San Diego future leaders - our youth!"
+		"categories": [
+			{
+				"parent_id": null,
+				"id": 2000000,
+				"name": "music"
+			}
+		],
+		"thumbnail":"http://upload.wikimedia.org/wikipedia/en/b/bd/With_Love_and_Squalor.jpg",
+		"description":"We Are Scientists is a New York-based indie rock band that formed in Berkeley, California, USA in 2000.",
+		"performers": [
+			{
+				"name": "Reverend Horton Heat",
+				"short_name": "Reverend Horton Heat",
+				"url": "http://seatgeek.com/reverend-horton-heat-tickets",
+				"type": "",
+				"image": "http://cdn.chairnerd.com/images/performers-landscape/reverend-horton-heat-d64b49/1528/huge.jpg",
+				"images": {
+					"huge": "http://cdn.chairnerd.com/images/performers-landscape/reverend-horton-heat-d64b49/1528/huge.jpg",
+					"medium": "http://cdn.chairnerd.com/images/performers/1528/reverend-horton-heat-079864/medium.jpg",
+					"large": "http://cdn.chairnerd.com/images/performers/1528/reverend-horton-heat-ece5af/large.jpg",
+					"small": "http://cdn.chairnerd.com/images/performers/1528/reverend-horton-heat-1ea0b6/small.jpg"
+				},
+				"id": 1528
+			}
+		],
+		"url": "http://www.songkick.com/concerts/18622184-we-are-scientists-at-casbah",
+		"reviews": {
+			"rank":3,
+			"twitter": [
+				{}
+			],
+			"cyberdiscovery": [
+				{}
+			]
+		}
+	},
+	{
+		"id":"",
+		"name":"Lindsey Stirling",
+		"date":"Tuesday, May 13",
+		"time":"7:30 PM",
+		"venue":{
+			"name":"Humphreys Concerts By The Bay",
+			"url":"",
+			"address":"2241 Shelter Island Dr, San Diego, CA",
+			"latlon":[],
+			"timezone":""
+		},
+		"categories": [
+			{
+				"parent_id": null,
+				"id": 2000000,
+				"name": "art&culture"
+			}
+		],
+		"thumbnail":"https://lh3.googleusercontent.com/-XE_8yjzDN74/U19AdVheCeI/AAAAAAAAfF4/K549btn_tKo/s928-fcrop64=1,00000000ff89ffff/Album-Out-Lindsey-Stirling-Google.jpg",
+		"description":"Lindsey Stirling is an American violinist, dancer, performance artist, and composer. She presents choreographed violin performances, both live and in music videos found on her YouTube channel, Lindseystomp, which she introduced in 2007.",
+		"performers": [
+			{
+				"name": "Reverend Horton Heat",
+				"short_name": "Reverend Horton Heat",
+				"url": "http://seatgeek.com/reverend-horton-heat-tickets",
+				"type": "",
+				"image": "http://cdn.chairnerd.com/images/performers-landscape/reverend-horton-heat-d64b49/1528/huge.jpg",
+				"images": {
+					"huge": "http://cdn.chairnerd.com/images/performers-landscape/reverend-horton-heat-d64b49/1528/huge.jpg",
+					"medium": "http://cdn.chairnerd.com/images/performers/1528/reverend-horton-heat-079864/medium.jpg",
+					"large": "http://cdn.chairnerd.com/images/performers/1528/reverend-horton-heat-ece5af/large.jpg",
+					"small": "http://cdn.chairnerd.com/images/performers/1528/reverend-horton-heat-1ea0b6/small.jpg"
+				},
+				"id": 1528
+			}
+		],
+		"url": "http://www.humphreysconcerts.com/schedule_long.cfm",
+		"reviews": {
+			"rank":2,
+			"twitter": [
+				{}
+			],
+			"cyberdiscovery": [
+				{}
+			]
+		}
 	}
 ]
