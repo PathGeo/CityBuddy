@@ -19,6 +19,9 @@ body {
 .navbar-wrapper .container {padding-right: 0;padding-left: 0;}
 .navbar-wrapper .navbar {padding-right: 15px;padding-left: 15px; }
 .navbar-wrapper .navbar-nav {float:right;}
+.navbar-collapse {position:absolute; right:2%; z-index:100; background-color:#222222;max-height:500px;}
+
+
 
 
 /* CUSTOMIZE THE CAROUSEL
@@ -30,7 +33,7 @@ body {
 /* Declare heights because of positioning of img element */
 .carousel .item {height: 500px;background-color: #777;}
 .carousel-inner > .item > img {position: absolute;left: 0%;width: 100%;height: 100%;}
-.carousel-indicators {bottom:0px; right:-10%;left:auto; width:30%;}
+.carousel-indicators {bottom:0px; right:2%;left:auto; width:50%;text-align:right;}
 .carousel-caption {left:0px; right:0px; }
 .carousel-control {z-index:10;}
 
@@ -43,10 +46,12 @@ body {
 
 
 /** navbar */
+.container {position:relative;}
 .navbar-wrapper {margin-top:0px; background-color:#222222; }
 .navbar-wrapper .container {margin:0px; }
 .navbar-wrapper .navbar {margin-bottom:0px; }
 .navbar-wrapper .dropdown-menu {right:0px; left:auto;}
+.form-group {position:absolute; width:250px; top:8px; right:70px; }
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -134,7 +139,11 @@ body {
   
   .socialRank {bottom:15px; }
   
+  
+  /** naavbar */
   .container {width:99%;}
+  .navbar-collapse {position:relative; right:auto; z-index:100;background-color:transparent}
+  .form-group {right:300px; }
 }
 
 
@@ -159,6 +168,6 @@ body {
   }
   
   .navbar-wrapper .container {margin:0px auto 0px auto; width:86%; padding-right:15px; }
-  .carousel-indicators {width:60%;}
+  .carousel-indicators {right:17%; }
 
 }
