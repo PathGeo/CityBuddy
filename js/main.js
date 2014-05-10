@@ -49,7 +49,8 @@ function showSearchResult(json){
 	var html='<div class="carousel-inner">',
 		length=json.length,
 		$target=$("#WeekHotEvent"),
-		html_index="<ol class='carousel-indicators'>",
+		$index=$(".carousel-indicators"),
+		html_index="",
 		venue,
 		star="<img src='images/1399611719_star.png' alt='Social Rank'/>&nbsp; &nbsp; ";
 	
@@ -62,7 +63,7 @@ function showSearchResult(json){
 		reviews=evt.reviews; 
 		
 		//insert index
-		html_index+="<li data-target='#WeekHotEvent' data-slide-to='"+i+"' class='"+((i==0)?"active":"")+"'></li>";
+		html_index+="<li data-target='#WeekHotEvent' data-slide-to='"+i+"' class='"+((i==0)?"active":"")+"'><img src='"+evt.thumbnail+"'/><br>"+evt.name+"</li>";
 		
 		//html
 		html+="<div class='item"+((i==0)?" active":"")+"'>"+
@@ -82,8 +83,8 @@ function showSearchResult(json){
 		
 	});
 	
-	
-	$target.append(html_index).append(html).carousel();
+	$index.html(html_index);
+	$target.append(html).carousel();
 }
 
 
