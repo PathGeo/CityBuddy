@@ -53,14 +53,14 @@ for evt in j['results']['collection1']:
 
         #date
         dates=re.split('\xa0-\xa0',evt['date'])
-        event['datetime_start_local']=dateParser.parse(dates[0]).isoformat().replace("T"," ") #convert time to iso format
-        event['datetime_end_local']=dateParser.parse(dates[1]).isoformat().replace("T"," ")  #convert time to iso format
+        event['datetime_start_local']=dateParser.parse(dates[0])
+        event['datetime_end_local']=dateParser.parse(dates[1])
 
       
         
         #change timezone
-        event['datetime_start_utc']=local.localize(dateParser.parse(event["datetime_start_local"]), is_dst=None).astimezone(utc).strftime("%Y-%m-%d %H:%M:%S")
-        event['datetime_end_utc']=local.localize(dateParser.parse(event["datetime_end_local"]), is_dst=None).astimezone(utc).strftime("%Y-%m-%d %H:%M:%S")
+        event['datetime_start_utc']=local.localize(event["datetime_start_local"]).astimezone(utc)
+        event['datetime_end_utc']=local.localize(event["datetime_end_local"]).astimezone(utc)
         
 
         category['name']=evt['type']
@@ -80,7 +80,8 @@ if(len(results)!=0):
     #log how many new events
     LOGGER.info('There are ' + str(len(results)) + ' events added in the mongodb')
 
-    print json.dumps(results)
+    #print results
+    #print json.dumps(results)
     #col.insert(results)
     print 'Successfully get event from SD Convention center at ' + str(datetime.now())
 

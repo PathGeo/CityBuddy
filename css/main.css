@@ -51,7 +51,7 @@ body {
 .navbar-wrapper .container {margin:0px; }
 .navbar-wrapper .navbar {margin-bottom:0px; }
 .navbar-wrapper .dropdown-menu {right:0px; left:auto;}
-.form-group {position:absolute; width:250px; top:8px; right:70px; }
+.form-group {position:absolute; width:120px; top:8px; right:70px; }
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -99,6 +99,11 @@ body {
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
+@media (min-width: 480px) {
+	.form-group  {width:250px; }
+
+}
+
 
 @media (min-width: 768px) {
 

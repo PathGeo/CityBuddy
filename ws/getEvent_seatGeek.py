@@ -87,17 +87,18 @@ for evt in j['events']:
 
 
             #add 'datetime_start_utc', 'datetime_start_local', 'datatime_end_utc', 'datetime_end_local'
-            evt["datetime_start_utc"]=evt["datetime_utc"]
-            evt["datetime_end_utc"]=evt["visible_until_utc"]
-            evt["datetime_start_local"]=evt["datetime_local"]
+            evt["datetime_start_utc"]=parser.parse(evt["datetime_utc"])
+            evt["datetime_end_utc"]=parser.parse(evt["visible_until_utc"])
+            evt["datetime_start_local"]=parser.parse(evt["datetime_local"])
 
+            
             #convert utc time to local
             utctime=utc.localize(parser.parse(evt["datetime_end_utc"]), is_dst=None)
             if "timezone" in evt["venue"] and evt["venue"]["timezone"]!="":
                     local=local=pytz.timezone(evt["venue"]["timezone"])
             localtime=utctime.astimezone(local)
-            evt["datetime_end_local"]=localtime.strftime ("%Y-%m-%d %H:%M:%S")
-
+            evt["datetime_end_local"]=localtime
+            
             #del redundant datetime properties
             del evt["datetime_utc"]
             del evt["visible_until_utc"]
