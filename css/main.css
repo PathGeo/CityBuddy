@@ -38,7 +38,12 @@ ul {list-style:none; }
 
 
 
-
+/**
+ * 	page-what's hot now
+ */
+#page-map .ui-panel-wrapper {height:100%; }
+#page-map .ui-content {width:100%; height: 100%; padding:0px !important; }
+#map {width:100%; height:100%; }
 
 
 
