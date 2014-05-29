@@ -87,8 +87,27 @@ $(function(){
 		searchEvent();
 
 		//init map
-		$("#page-map").on("pageshow", function(e, ui){
-			init_map();
+		$("#page-map").on({
+			"pageshow":function(e, ui){
+				var $this=$(this);
+				
+				setTimeout(function(){
+					$("#page-map #map").css({height: $this.height()-$this.find(".ui-header").height()-2})
+					init_map();
+				}, 10);
+	
+			}
+		})
+		
+		$(window).on({
+			"resize":function(){
+				
+				var $this=$("#page-map");
+				$("#page-map #map").css({height: $this.height()-$this.find(".ui-header").height()-2})
+				app.map.invalidateSize(); 
+			}
+			
+			
 		})
 });
 
