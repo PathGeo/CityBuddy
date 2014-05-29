@@ -2,6 +2,7 @@
 var app={
 	searchResult:null,
 	testmode:true,
+	socket:io.connect("http://www.pathgeo.com:8080/socket-citybuddy"),
 	map : null,
 	initCenterLatLng : [35, -100],
 	initCenterZoom : 4,
@@ -83,6 +84,9 @@ var app={
 
 $(function(){
 		init_UI();
+		
+		init_socket();
+		
 		//search event
 		searchEvent();
 
@@ -119,6 +123,22 @@ $(function(){
 function init_UI(){
 	$("body>[data-role='panel']").panel().find("[data-role='listview']").listview();
 	
+}
+
+
+
+/**
+ * socket 
+ */
+function init_socket(){
+	app.socket.on({
+		"connected": function(data){
+			console.log(data);
+		},
+		"broadcast": function(){
+			
+		}
+	});
 }
 
 
