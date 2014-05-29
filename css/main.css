@@ -1,90 +1,38 @@
-/* GLOBAL STYLES
--------------------------------------------------- */
-/* Padding below the footer and lighter body text */
-
-body {
-  padding-bottom: 40px;
-  color: #5a5a5a;
-}
 
 
-
-/* CUSTOMIZE THE NAVBAR
--------------------------------------------------- */
-
-/* Special class on .container surrounding .navbar, used for positioning it into place. */
-.navbar-wrapper {position: absolute;top: 0;right: 0;left: 0;z-index: 20;}
-
-/* Flip around the padding for proper display in narrow viewports */
-.navbar-wrapper .container {padding-right: 0;padding-left: 0;}
-.navbar-wrapper .navbar {padding-right: 15px;padding-left: 15px; }
-.navbar-wrapper .navbar-nav {float:right;}
-.navbar-collapse {position:absolute; right:2%; z-index:100; background-color:#222222;max-height:500px;}
+ul {list-style:none; }
 
 
-
-
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
-/* Carousel base class */
-.carousel {height: 250px;margin-bottom: 150px;}
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {z-index: 10;background:rgba(0,0,0,0.7);bottom:0px; }
-/* Declare heights because of positioning of img element */
-.carousel .item {height: 100%;background-color: #777;}
-.carousel-inner {height: 100%;}
-.carousel-inner > .item > img {position: absolute;left: 0%;width: 100%;height: 100%;}
-.carousel-indicators {bottom:-55px; left:0px; width:100%;text-align:center; margin-left:0px; }
-.carousel-indicators li {width:50px;  text-indent:0px; margin:0px 15px 0px 15px; padding:5px; border:0px; vertical-align: top;}
-.carousel-indicators li img {width:30px; height:30px; }
-.carousel-indicators .active {width:50px; height:auto; background-color:#6e6e6e;margin:0px 15px 0px 15px; color:#ffffff; }
-.carousel-caption {left:0px; right:0px; }
-.carousel-control {z-index:10;}
-
-
-
-.socialRank {position:absolute; bottom:5px; width:99%; margin:0 auto; text-align:center;}
-.socialRank img {width:20px; height:20px;}
+/**
+ * 	panel
+ */
+#menu-social {margin:0px; padding:0px}
+#menu-social li {float:left; width:33.33%;position:relative; text-align:center; }
+#menu-social li img {width:50%; }
 
 
 
 
 
-/** navbar */
-.container {position:relative;}
-.navbar-wrapper {margin-top:0px; background-color:#222222; }
-.navbar-wrapper .container {margin:0px; }
-.navbar-wrapper .navbar {margin-bottom:0px; }
-.navbar-wrapper .dropdown-menu {right:0px; left:auto;}
-.form-group {position:absolute; width:120px; top:8px; right:70px; }
 
-/* MARKETING CONTENT
--------------------------------------------------- */
-/* Pad the edges of the mobile views a bit */
-.marketing {padding-right: 15px;padding-left: 15px;}
+/**
+ * 	main page
+ */
 
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {margin-bottom: 20px;text-align: center;}
-.marketing h2 {font-weight: normal;}
-.marketing .col-lg-4 p {margin-right: 10px;margin-left: 10px;}
+/** cateogry*/
+#page-main .category .ui-bar {text-align:center; padding:0px; position:relative; }
+#page-main .category .ui-bar a {margin:0px; }
+#page-main .category .ui-bar img {width:50%; margin:0 auto;}
+#page-main .category .ui-bar p {font-weight:bold;}
 
-
-
-
-
-/* Featurettes
-------------------------- */
-
-.featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -1px;
-}
+/** slider */
+#page-main #slider  {margin-bottom:50px; }
+#page-main #slider li {text-align:center;}
+#page-main #slider li img {width:100%; max-height:500px;  }
+#page-main #slider .flex-control-nav {bottom:auto; position:relative;  }
+#page-main #slider .flex-direction-nav a {top:40%; }
+#page-main #slider .flex-caption {position:absolute; width:100%; bottom:3px; margin:0px; padding-bottom:10px; background:rgba(0,0,0,0.7); text-shadow:auto; color:#ffffff; font-size:90%; }
+#page-main #slider .socialRank img {width:20px; }
 
 
 
@@ -96,93 +44,13 @@ body {
 
 
 
-
-
-
-
-
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-@media (min-width: 480px) {
-	.form-group  {width:250px; }
-	.carousel {height: 350px;}
-	.carousel-indicators {bottom:-155px; }
-	.carousel-indicators li {width:100px; height:auto;}
-	.carousel-indicators li img {width:80px; height:80px; }
-	.carousel-indicators .active {width:100px; height:auto;}
-}
-
-
-@media (min-width: 768px) {
-
-  /* Remove the edge padding needed for mobile */
-  .marketing {
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-
-  .navbar-wrapper .container {
-    padding-right: 0px;
-    padding-left:  15px;
-  }
-  .navbar-wrapper .navbar {
-    padding-right: 0;
-    padding-left:  0;
-  }
-
-  /* The navbar becomes detached from the top, so we round the corners */
-  .navbar-wrapper .navbar {
-    border-radius: 4px;
-  }
-
-  /* Bump up size of carousel content */
-  .carousel {height: 500px;}
-  .carousel-caption p {
-    margin-bottom: 20px;
-    font-size: 21px;
-    line-height: 1.4;
-  }
-  
-  
-
-  .featurette-heading {
-    font-size: 50px;
-  }
-  
-  
-  .socialRank {bottom:15px; }
-  
-  
-  /** naavbar */
-  .container {width:99%;}
-  .navbar-collapse {position:relative; right:auto; z-index:100;background-color:transparent}
-  .form-group {right:300px; }
-}
-
-
-
-
-@media (min-width: 992px) {
-  .featurette-heading {
-    margin-top: 120px;
-  }
-  
-  .carousel-inner > .item > img {
-	  position: absolute;
-	  left: 30%;
-	  width: 70%;
-	  height: 140%;
-	  margin-left: -15%; /* Half the width */
-	}
-	
-  .carousel-caption{    
-  	left:15%; 
-  	right:15%; 
-  }
-  
-  .navbar-wrapper .container {margin:0px auto 0px auto; width:86%; padding-right:15px; }
-  .carousel-indicators {right:17%; }
+/**
+ * 	responsive
+ */
+@media (min-width:992px){
+	/**
+	 * 	slider
+	 */
+	.ui-content  {width:1024px; margin:0 auto; }
 
 }

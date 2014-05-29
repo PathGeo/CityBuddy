@@ -1,215 +1,212 @@
-﻿
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+﻿<!DOCTYPE html>
+<html>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-
-    <title>CityBuddy powered by PathGeo</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="js/bootstrap/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Custom styles for this template -->
-    <link href="css/main.css" rel="stylesheet">
-  </head>
-  
-  
-  
-  <body>
-    <div class="navbar-wrapper">
-      <div class="container">
-
-        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">CityBuddy</a>
-            </div>
-            
-          <!-- <form class="navbar-form navbar-left" role="search">-->
-	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search Event">
-	        </div>
-	     <!-- </form>-->
-            
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Log in</a></li>
-                <li><a href="#hotnow">What's Hot Now</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">About us</a></li>
-                    <!--
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    -->
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
+    <title>CityBuddy | PathGeo</title>
+    
+    
+    <link rel="stylesheet" href="js/jquery/jquery.mobile-1.4.2.min.css">
+	<link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/main.css">
+    
+    
+	<script src="js/jquery/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/flexslider/jquery.flexslider.js"></script>
+    <script src="js/main.js"></script>
+</head>
 
 
-    <!-- Carousel
-    ================================================== -->
-    <div id="WeekHotEvent" class="carousel slide" data-ride="carousel">
-      
-      <a class="left carousel-control" href="#WeekHotEvent" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#WeekHotEvent" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-      <ol class='carousel-indicators'></ol>
-    </div><!-- /.carousel -->
+
+<body>
 	
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-
-
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <!-- /END THE FEATURETTES -->
-
-
-      <!-- FOOTER -->
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-
-    </div><!-- /.container -->
-
-
-	<!-- popup-->
-	<!-- Modal -->
-	<div class="modal fade popup" id="eventDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <!--modal-header-->
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" ></h4>
-	      </div>
-	      
-	      <!--modal-content-->
-	      <div class="modal-body"></div>
-	      
-	      <!--modal-footer-->
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">OK</button>
-	      </div>
+	<!-- main page-->
+	<div data-role="page" class="" id="page-main" data-title="CityBuddy | PathGeo">
+		
+		
+		<!-- /header -->
+	    <div data-role="header">
+	        <h1>CityBuddy</h1>
+	        <a href="#panel-menu" data-icon="bars" data-iconpos="notext">Menu</a>
+	        <!--<a href="#add-form" data-icon="gear" data-iconpos="notext">Panel</a>-->
 	    </div>
-	  </div>
-	</div>
-
-
-    <!--core JavaScript
-    ================================================== -->
-    <script src="js/jquery/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <script src="js/bootstrap/docs.min.js"></script>
-	<script src="js/main.js"></script>
-    <script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 	
-	  ga('create', 'UA-39694033-7', 'pathgeo.com');
-	  ga('send', 'pageview');
-	</script>
-  </body>
+		<!--main-->
+	    <div role="main" class="ui-content">
+	    	<!--slider-->
+	    	<div id='slider'>
+	    		<ul class='slides'>
+	    		</ul>
+	    	</div>
+
+	    	
+	    	<div class='ui-grid-a category'>
+	    		<div class='ui-block-a'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341288_art-gallery.png' /><p>Art & Culture</p></a></div></div>
+	    		<div class='ui-block-b'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341683_music.png' /><p>Music</p></a></div></div>
+	    	</div>
+	    	<div class='ui-grid-a category'>
+	    		<div class='ui-block-a'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341485_soccer.png' /><p>Sport</p></a></div></div>
+	    		<div class='ui-block-b'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341382_warehouse.png' /><p>Community</p></a></div></div>
+	    	</div>
+	    	<div class='ui-grid-a category'>
+	    		<div class='ui-block-a'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341888_briefcase.png' /><p>Convention</p></a></div></div>
+	    		<div class='ui-block-b'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341718_519689-196_Time.png' /><p>Real-Time</p></a></div></div>
+	    	</div>
+	
+			
+	        <p>description</p>
+	
+			
+
+	
+	        <!--
+	        	<a href="../" data-rel="back" data-ajax="false" class="ui-btn ui-shadow ui-corner-all ui-mini ui-btn-inline ui-icon-carat-l ui-btn-icon-left ui-alt-icon ui-nodisc-icon">Back</a>
+			-->
+			
+			
+		</div><!-- /content -->
+	</div><!-- /page -->
+
+
+
+
+	<!--page map-->
+	<div data-role="page" class="" id="page-map" data-title="CityBuddy | PathGeo">
+		<!-- /header -->
+	    <div data-role="header">
+	        <h1>What's How NOW</h1>
+	        <a href="#panel-menu" data-icon="bars" data-iconpos="notext">Menu</a>
+	        <!--<a href="#add-form" data-icon="gear" data-iconpos="notext">Panel</a>-->
+	    </div>
+	
+		<!--main-->
+	    <div role="main" class="ui-content">
+	    	
+	    	
+	    	
+	
+		</div><!-- /content -->
+	</div><!-- /page -->
+
+
+	
+	<!--page settting-->
+	<div data-role="page" class="" id="page-setting" data-title="CityBuddy | PathGeo">
+		<!-- /header -->
+	    <div data-role="header">
+	        <h1>Setting</h1>
+	        <a href="#panel-menu" data-icon="bars" data-iconpos="notext">Menu</a>
+	        <!--<a href="#add-form" data-icon="gear" data-iconpos="notext">Panel</a>-->
+	    </div>
+	
+		<!--main-->
+	    <div role="main" class="ui-content">
+	    	
+	    	
+	
+		</div><!-- /content -->
+	</div><!-- /page -->
+	
+	
+	
+	
+	<!--page help-->
+	<div data-role="page" class="" id="page-help" data-title="CityBuddy | PathGeo">
+		<!-- /header -->
+	    <div data-role="header">
+	        <h1>Help</h1>
+	        <a href="#panel-menu" data-icon="bars" data-iconpos="notext">Menu</a>
+	        <!--<a href="#add-form" data-icon="gear" data-iconpos="notext">Panel</a>-->
+	    </div>
+	
+		<!--main-->
+	    <div role="main" class="ui-content">
+	    	
+	    	
+	    	
+	    	
+	
+		</div><!-- /content -->
+	</div><!-- /page -->
+	
+	
+	
+	<!--page contact-->
+	<div data-role="page" class="" id="page-contact" data-title="CityBuddy | PathGeo">
+		<!-- /header -->
+	    <div data-role="header">
+	        <h1>Contact</h1>
+	        <a href="#panel-menu" data-icon="bars" data-iconpos="notext">Menu</a>
+	        <!--<a href="#add-form" data-icon="gear" data-iconpos="notext">Panel</a>-->
+	    </div>
+	
+		<!--main-->
+	    <div role="main" class="ui-content">
+	    	
+	    	
+	    	
+	    	
+		</div><!-- /content -->
+	</div><!-- /page -->
+	
+	
+	
+	
+	
+
+	<!-- panel-->
+	<div data-role="panel" data-display="push" data-theme="b" id="panel-menu">
+		<ul data-role="listview">
+            <!--<li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>-->
+            <li><ul id='menu-social'>
+            	<li><a href='#' target='_blank'><img src='images/1401336069_social_3.png'/></a></li>
+            	<li><a href='#' target='_blank'><img src='images/1401336095_social_8.png'/></a></li>
+            	<li><a href='#' target='_blank'><img src='images/1401336104_google.png'/></a></li>
+            </ul></li>
+            <li>CityBuddy</li>
+            <li><a href="#page-main">Discovery</a></li>
+            <li><a href="#page-map">What's Hot Now</a></li>
+            <li><a href="#page-setting">Setting</a></li>
+            <li><a href="#page-help">Help</a></li>
+            <li><a href="#page-contact">Contact</a></li>
+		</ul>
+	</div><!-- /panel -->
+
+
+
+
+
+	<!-- right panel-->
+	<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="add-form">
+
+        <form class="userform">
+
+        	<h2>Login</h2>
+
+            <label for="name">Username:</label>
+            <input type="text" name="name" id="name" value="" data-clear-btn="true" data-mini="true">
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" value="" data-clear-btn="true" autocomplete="off" data-mini="true">
+
+            <div class="ui-grid-a">
+                <div class="ui-block-a"><a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini">Cancel</a></div>
+                <div class="ui-block-b"><a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-mini">Save</a></div>
+			</div>
+        </form>
+
+	</div><!-- /panel -->
+	
+	
+
+
+
+
+
+
+
+</body>
 </html>
-
-
-
-

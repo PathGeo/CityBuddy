@@ -11,9 +11,20 @@ var app={
 $(function(){
 	
 	
+	$("body>[data-role='panel']").panel().find("[data-role='listview']").listview();
 	
+	
+	//search event
 	searchEvent();
 });
+
+
+
+
+
+
+
+
 
 
 
@@ -46,11 +57,9 @@ function searchEvent(location){
  * @param {Object} json
  */
 function showSearchResult(json){
-	var html='<div class="carousel-inner">',
+	var html='',
 		length=json.length,
-		$target=$("#WeekHotEvent"),
-		$index=$(".carousel-indicators"),
-		html_index="",
+		$target=$("#slider"),
 		venue,
 		star="<img src='images/1399611719_star.png' alt='Social Rank'/>&nbsp; &nbsp; ";
 	
@@ -61,14 +70,11 @@ function showSearchResult(json){
 		var description=String(evt.description).substr(0, 300) + '.....';
 		venue=evt.venue;
 		reviews=evt.reviews; 
-		
-		//insert index
-		html_index+="<li data-target='#WeekHotEvent' data-slide-to='"+i+"' class='"+((i==0)?"active":"")+"'><img src='"+evt.thumbnail+"'/><br>"+evt.name+"</li>";
-		
+
 		//html
-		html+="<div class='item"+((i==0)?" active":"")+"'>"+
+		html+="<li>"+
 			 	"<img src='"+evt.thumbnail+"'>"+
-			 	"<div class='carousel-caption'>"+
+			 	"<div class='flex-caption'>"+
 			 		"<h1>"+evt.name+"</h1>"+
 			 		"<p>"+evt.date+", "+evt.time+" @ <a href='"+ ((venue.url&&venue.url!='')?venue.url:"#")+"' target='_blank'>"+venue.name+"</a><br>"+venue.address+"</p>"+
 			 		"<div class='socialRank'>"+ (function(count){
@@ -78,13 +84,13 @@ function showSearchResult(json){
 			 			}
 			 		})(reviews.rank) +"</div>"+
 			 	"</div>"+
-			 "</div>";
-				
-		
+			 "</li>";
 	});
 	
-	$index.html(html_index);
-	$target.append(html).carousel();
+	$target.find("ul.slides").html(html);
+	$target.flexslider({
+		animation: "fade"
+	});
 }
 
 
