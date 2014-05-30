@@ -7,7 +7,7 @@ var app={
 	initCenterLatLng : [35, -100],
 	initCenterZoom : 4,
 	heatmapLayer:null,
-	points:[],
+	markers:new L.MarkerClusterGroup(),
 	basemaps : {
 		//"Light map": L.tileLayer("https://tiles.mapbox.com/v3/pathgeo.map-jwxvdo36/{z}/{x}/{y}.png?updated=1374825292888",{attribution:"Map Provided by <a href='http://www.mapbox.com/' target='_blank'>MapBox</a>", title:"Light Map"}),
 		//"Terrain map": L.tileLayer("https://tiles.mapbox.com/v3/pathgeo.map-9p1ubd74/{z}/{x}/{y}.png?updated=1374825095067",{attribution:"Map Provided by <a href='http://www.mapbox.com/' target='_blank'>MapBox</a>", title:"Terrain Map"}),
@@ -86,7 +86,11 @@ var app={
 
 $(function(){
 		init_UI();
-	
+		
+		//init socket
+		init_socket();
+		
+		
 		//search event
 		searchEvent();
 
@@ -101,13 +105,17 @@ $(function(){
 						$("#page-map #map").css({height: $this.height()-$this.find(".ui-header").height()-2})
 						init_map();
 						
-						init_socket();
-						
 					}, 10);
 					
+				}else{
+					//resize the map
+					app.map.invalidateSize();
 				}
 				
-	
+				
+			
+				
+				
 			}
 		})
 		
@@ -139,40 +147,48 @@ function init_UI(){
  * socket 
  */
 function init_socket(){
-	app.socket.on("connect", function(){
+	app.socket.on("connected", function(data){
+		console.log(data)
+	})
 		
-		app.socket.on("connected", function(data){
-			console.log(data)
-		})
-		
-		
-		app.socket.on("broadcast", function(tweet){
-			console.log(tweet);
+	
+	app.socket.on("broadcast", function(tweet){
 			
-			if(tweet && app.map && app.heatmapLayer){
-				var lat, lng;
-				if(tweet.geo && tweet.geo.coordinates){
-					lat=tweet.geo.coordinates[0];
-					lng=tweet.geo.coordinates[1];
-				}else{
-					lat=tweet.lat;
-					lng=tweet.lon;
-				}
-			
-				if(lat&&lng){
-					var marker=new L.Marker(new L.LatLng(lat, lng));
-					marker.bindPopup(tweet.text).addTo(app.map)
-					
-					//app.points.push({lat:lat, lon:lng, value:1});
-					
-					//add heatmap
-					//app.heatmapLayer.setData(app.points);
-					
-				}
-
+		if(tweet){
+			var lat, lng;
+			if(tweet.geo && tweet.geo.coordinates){
+				lat=tweet.geo.coordinates[0];
+				lng=tweet.geo.coordinates[1];
+			}else{
+				lat=tweet.lat;
+				lng=tweet.lon;
 			}
-		})
+					
+			if(lat&&lng){
+				//app.points.push({lat:lat, lon:lng, value:1});
+				//marker
+				var marker=new L.Marker(new L.LatLng(lat, lng)),
+					point=new L.LatLng(lat, lng);
+					
+				marker.bindPopup(tweet.text);
+				app.markers.addLayer(marker);
+				
+				//heatmap
+				app.heatmapLayer.addLatLng(point);
+						
+			
+				//if switch to page-map then show marker and heatmap;
+				if($.mobile.activePage.attr("id")=='page-map'){
+					if(app.map && app.heatmapLayer){
+						//markercluster
+						app.markers.addTo(app.map);
+						
+					}
+				};
+			}
+		}
 	});
+
 }
 
 
@@ -201,13 +217,7 @@ function init_map(){
 	
 	//add heatmap layer
 	var empty_geojson=[{"type":"Feature", "properties":{}, "geometry":{"type":"Point", "coordinates":[]}}];
-	app.heatmapLayer =pathgeo.layer.heatMap(empty_geojson, 1000, {
-			opacity : 0.55,
-			layerName:"heatMapLayer",
-			visible:true
-	});
-	app.heatmapLayer.addTo(app.map);
-	console.log(app.heatmapLayer)
+	app.heatmapLayer = L.heatLayer([], {radius: 50}).addTo(app.map)
 }
 
 
