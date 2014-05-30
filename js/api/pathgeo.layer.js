@@ -99,7 +99,7 @@ pathgeo.layer={
 		}
 		
 		
-		heatmapLayer.setData(hitMapData.data);
+		//heatmapLayer.setData(hitMapData.data);
 		return heatmapLayer;
 	}
 	
