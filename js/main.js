@@ -7,7 +7,7 @@ var app={
 	initCenterLatLng : [35, -100],
 	initCenterZoom : 4,
 	heatmapLayer:null,
-	markers:new L.MarkerClusterGroup(),
+	clusterLayer:new L.MarkerClusterGroup(),
 	basemaps : {
 		//"Light map": L.tileLayer("https://tiles.mapbox.com/v3/pathgeo.map-jwxvdo36/{z}/{x}/{y}.png?updated=1374825292888",{attribution:"Map Provided by <a href='http://www.mapbox.com/' target='_blank'>MapBox</a>", title:"Light Map"}),
 		//"Terrain map": L.tileLayer("https://tiles.mapbox.com/v3/pathgeo.map-9p1ubd74/{z}/{x}/{y}.png?updated=1374825095067",{attribution:"Map Provided by <a href='http://www.mapbox.com/' target='_blank'>MapBox</a>", title:"Terrain Map"}),
@@ -87,38 +87,41 @@ var app={
 $(function(){
 		init_UI();
 		
+		init_map();
+		
+		
 		//init socket
 		init_socket();
 		
-		
+
 		//search event
 		searchEvent();
 
-		//init map
+
+		
+		//when swtich to page-map
 		$("#page-map").on({
 			"pageshow":function(e, ui){
-				
-				if(!app.map){
-					var $this=$(this);
-				
-					setTimeout(function(){
-						$("#page-map #map").css({height: $this.height()-$this.find(".ui-header").height()-2})
-						init_map();
-						
-					}, 10);
-					
-				}else{
+				var $this=$(this);
+			
+				setTimeout(function(){
+					$("#page-map #map").css({height: $this.height()-$this.find(".ui-header").height()-2})
 					//resize the map
 					app.map.invalidateSize();
-				}
-				
-				
+
+					//if this is first time to switch to map page
+					if(app.heatmapLayer.options.visible === undefined || app.clusterLayer.options.visible===undefined){
+						//add markercluster adn heatmap on the map
+						app.clusterLayer.addTo(app.map).options.visible=true;
+						app.heatmapLayer.addTo(app.map).options.visible=true;
+					}
+				}, 10);
 			
-				
-				
 			}
 		})
 		
+		
+		//when resize the window
 		$(window).on({
 			"resize":function(){
 				
@@ -126,10 +129,10 @@ $(function(){
 				$("#page-map #map").css({height: $this.height()-$this.find(".ui-header").height()-2})
 				app.map.invalidateSize(); 
 			}
-			
-			
 		})
 });
+
+
 
 
 
@@ -138,7 +141,7 @@ $(function(){
  */
 function init_UI(){
 	$("body>[data-role='panel']").panel().find("[data-role='listview']").listview();
-	
+
 }
 
 
@@ -153,8 +156,10 @@ function init_socket(){
 		
 	
 	app.socket.on("broadcast", function(tweet){
-			
 		if(tweet){
+			
+			console.log(tweet)
+			
 			var lat, lng;
 			if(tweet.geo && tweet.geo.coordinates){
 				lat=tweet.geo.coordinates[0];
@@ -167,24 +172,19 @@ function init_socket(){
 			if(lat&&lng){
 				//app.points.push({lat:lat, lon:lng, value:1});
 				//marker
-				var marker=new L.Marker(new L.LatLng(lat, lng)),
+				var marker=new L.Marker(new L.LatLng(lat, lng)).on("click", function(e){
+					console.log(e);
+				}),
 					point=new L.LatLng(lat, lng);
 					
 				marker.bindPopup(tweet.text);
-				app.markers.addLayer(marker);
+				app.clusterLayer.addLayer(marker);
 				
 				//heatmap
 				app.heatmapLayer.addLatLng(point);
 						
 			
-				//if switch to page-map then show marker and heatmap;
-				if($.mobile.activePage.attr("id")=='page-map'){
-					if(app.map && app.heatmapLayer){
-						//markercluster
-						app.markers.addTo(app.map);
-						
-					}
-				};
+				
 			}
 		}
 	});
@@ -217,11 +217,157 @@ function init_map(){
 	
 	//add heatmap layer
 	var empty_geojson=[{"type":"Feature", "properties":{}, "geometry":{"type":"Point", "coordinates":[]}}];
-	app.heatmapLayer = L.heatLayer([], {radius: 50}).addTo(app.map)
+	app.heatmapLayer = L.heatLayer([], {radius: 50});
+	
+	
+	//controls
+	var controls={
+		mapGallery : L.Control.extend({
+			options : {
+				"collapsed" : true,
+				"position" : 'topright',
+				"text" : 'Map Gallery'
+			},
+			initialize : function(options) {
+				L.Util.setOptions(this, options);
+			},
+			onAdd : function(map) {
+				// create the control container with a particular class name
+				var container = L.DomUtil.create('div', 'leaflet-control-mapGallery');
+				var html = "<ul>"+
+							"<li title='Cluster Map' layer='clusterLayer' style='background-color:#5B92C0'><img src='images/gallery-cluster.png' /></li>"+
+							"<li title='Hotspots' layer='heatmapLayer' style='background-color:#5B92C0'><img src='images/gallery-heatmap.png' /></li>"+
+						   "</ul>";
+
+
+				//click map gallery event
+				$(container).html(html).find("ul li").on({
+					click : function() {
+						var $this = $(this), value = $this.attr("layer"), layer = app[value];
+						
+						//if this layer is already shown on the map, hide the layer and change the color
+						if (layer.options.visible) {
+							//hide layers
+							//if geoJsonLayer >> hide all _icon. Other layers, remove layer from map
+							if(value=='geoJsonLayer'){  
+								$.each(layer._layers,function(k,v){
+									$(v._icon).hide();
+								});
+							}else{
+								app.map.removeLayer(layer)
+							}
+							
+//							app.map.removeLayer(layer);
+							$this.css({"background-color" : ''});
+							
+							layer.options.visible=false;
+						} else {
+							//if the layer has not added on the map, add it first. If the layer alreayd has _map, directly show it
+							if(!layer._map){
+								layer.addTo(app.map)
+							}else{
+								//show layer
+								//if geojsonLayer >> show all _icon. Other layers, add on the map
+								if(value=='geoJsonLayer'){  
+									$.each(layer._layers,function(k,v){
+										$(v._icon).show();
+									});
+								}else{
+									layer.addTo(app.map)
+								}
+							}
+							
+						
+							//make the markerclusterlayer more priority
+							if(value=='clusterLayer'){layer.bringToFront();}
+							
+							$this.css({"background-color" : "#5B92C0"});
+
+							layer.options.visible=true;
+						}
+					},
+					mouseover : function() {
+						// $(".mapPopupWidget, #basemapWidget").hide();
+						// var $this = $(this), value = $this.attr("layer"), layer = app.geocodingResult[value];
+// 
+						// //only the layer is activated
+						// if (layer.options.visible) {
+							// //show map popup window
+							// $("#mapPopup_" + value).show();
+						// }
+					},
+					mouseleave : function() {
+
+					}
+				});
+				return container
+			}
+		}),
+		tocThumbnail: L.Control.extend({
+			options : {
+				"position" : 'topright',
+				"text" : 'Change Base Maps'
+			},
+			initialize : function(options) {L.Util.setOptions(this, options);},
+			onAdd : function(map) {
+				//create div element
+				var mainContent=L.DomUtil.create('div', 'leaflet-control-tocThumbnail'),
+					html="<a class='leaflet-control-layers-toggle' href='#' title='Layers'></a>"+ $("#basemapWidget")[0].outerHTML;
+				
+				$(mainContent).html(html)
+					.addClass('leaflet-control-layers')
+					.on({
+						"mouseover":mouseoverEvent,
+						"click": mouseoverEvent
+					})
+					.find("ul li").click(function(){
+						switchBaseLayer($(this).attr('title'));
+					});
+
+				//monuseoverEvent on the basemapWidget
+				function mouseoverEvent(e){
+					$("#basemapWidget").show().on({
+						"mouseleave":function(){
+							$(this).hide();
+						}
+					});
+				}
+				
+				return mainContent;
+			}
+		})
+	}
+	
+	
+	//add map gallery control
+	$.each(controls, function(k,v){
+		app.map.addControl(new v());
+	})
+	
+	
+	//insert a div, tweetContent
+	$("#map").append("<div id='tweetContent'><iframe src='https://twitframe.com/show?url=https://twitter.com/Breaking911/status/472482784221884416'></iframe></div>");
+
 }
 
 
 
+//switch basemap
+function switchBaseLayer(type){
+	var layer = app.basemaps[type] || null,
+		map=app.map;
+	
+	if(layer){
+		if(app.map.currentBasemap){
+			map.removeLayer(app.map.currentBasemap);
+		}
+		map.addLayer(layer);
+		app.map.currentBasemap=layer;
+		
+		//fire baselayerchange event
+		map.fire('baselayerchange', {layer: layer});
+	}
+}
 
 
 
