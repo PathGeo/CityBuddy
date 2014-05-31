@@ -103,10 +103,62 @@
 
 	
 	<!--page settting-->
-	<div data-role="page" class="" id="page-setting" data-title="CityBuddy | PathGeo">
+	<div data-role="page" class="" id="page-searchResult" data-title="CityBuddy | PathGeo">
 		<!-- /header -->
 	    <div data-role="header">
-	        <h1>Setting</h1>
+	        <h1>Search Results</h1>
+	        <a href="#panel-menu" data-icon="bars" data-iconpos="notext">Menu</a>
+	        <!--<a href="#add-form" data-icon="gear" data-iconpos="notext">Panel</a>-->
+	    </div>
+	
+		<!--main-->
+	    <div role="main" class="ui-content">
+	    	
+	    	<!--search result list-->
+	    	<ul data-role="listview" data-inset="true" data-filter="true"  data-filter-placeholder="Filter Events" id='searchResult'>
+			    <li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li>
+			    <li>
+			    	<a href="#">
+			    		<img src="images/BLESSTHEFALL.jpg">
+					    <h2>Title</h2>
+					    <p><strong>2014-07-21 8:30PM</strong></p>
+					    <p>SDSU Viejas Arena</p>
+					    <p class="ui-li-aside"><img src='images/1399611719_star.png'/>&nbsp; <img src='images/1399611719_star.png'/>&nbsp; </p>
+			    		<div class='tagContent'><p class='tag'>Art&Culture</p><p class='tag'>Convention</p></div>
+			    	</a>
+			    </li>
+			    <li>
+			    	<a href="#">
+			    		<img src="images/images.jpg">
+					    <h2>jQuery Team</h2>
+					    <p><strong>Boston Conference Planning</strong></p>
+					    <p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+					    <p class="ui-li-aside"><img src='images/1399611719_star.png'/>&nbsp; <img src='images/1399611719_star.png'/>&nbsp; </p>
+				   		<div class='tagContent'><p class='tag'>Art&Culture</p><p class='tag'>Convention</p></div>
+				    </a>
+				</li>
+			    <li data-role="list-divider">Thursday, October 7, 2010 <span class="ui-li-count">1</span></li>
+			    <li>
+			    	<a href="#">
+			    		<img src="images/With_Love_and_Squalor.jpg">
+					    <h2>Avery Walker</h2>
+					    <p><strong>Re: Dinner Tonight</strong></p>
+					    <p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait!</p>
+					    <p class="ui-li-aside"><img src='images/1399611719_star.png'/>&nbsp;</p>
+				    	<div class='tagContent'><p class='tag'>Art&Culture</p><p class='tag'>Convention</p></div>
+				    </a>
+				</li>
+			</ul>
+		</div><!-- /content -->
+	</div><!-- /page -->
+	
+	
+	
+	<!--page eventDetail-->
+	<div data-role="page" class="" id="page-eventDetail" data-title="CityBuddy | PathGeo">
+		<!-- /header -->
+	    <div data-role="header">
+	        <h1>Detail</h1>
 	        <a href="#panel-menu" data-icon="bars" data-iconpos="notext">Menu</a>
 	        <!--<a href="#add-form" data-icon="gear" data-iconpos="notext">Panel</a>-->
 	    </div>
@@ -115,10 +167,35 @@
 	    <div role="main" class="ui-content">
 	    	
 	    	
+	    	
+	    	
 	
 		</div><!-- /content -->
 	</div><!-- /page -->
 	
+	
+	
+	
+	
+	
+	<!--page setting-->
+	<div data-role="page" class="" id="page-setting" data-title="CityBuddy | PathGeo">
+		<!-- /header -->
+	    <div data-role="header">
+	        <h1>Help</h1>
+	        <a href="#panel-menu" data-icon="bars" data-iconpos="notext">Menu</a>
+	        <!--<a href="#add-form" data-icon="gear" data-iconpos="notext">Panel</a>-->
+	    </div>
+	
+		<!--main-->
+	    <div role="main" class="ui-content">
+	    	
+	    	
+	    	
+	    	
+	
+		</div><!-- /content -->
+	</div><!-- /page -->
 	
 	
 	
@@ -181,6 +258,9 @@
             <li><a href="#page-setting">Setting</a></li>
             <li><a href="#page-help">Help</a></li>
             <li><a href="#page-contact">Contact</a></li>
+            <!--test-->
+            <li><a href="#page-searchResult">test-searchResult</a></li>
+            <li><a href="#page-eventDetail">test-eventDetail</a></li>
 		</ul>
 	</div><!-- /panel -->
 

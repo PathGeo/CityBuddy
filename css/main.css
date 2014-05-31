@@ -72,7 +72,12 @@ ul {list-style:none; }
 
 
 
-
+/**
+ * 	page searchResult
+ */
+#page-searchResult #searchResult .ui-li-aside img {width:25px; height:25px;  }
+#page-searchResult #searchResult .tagContent {position:absolute; right:15%; top:3px; }
+#page-searchResult #searchResult .tag {margin-right:5px; float:right; font-size:80%; padding:0.5em; border-radius:5px; background-color:#ffffff; border:1px solid #cccccc; }
 
 
 /**
