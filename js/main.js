@@ -7,7 +7,7 @@ var app={
 	initCenterLatLng : [35, -100],
 	initCenterZoom : 4,
 	heatmapLayer:null,
-	clusterLayer:new L.MarkerClusterGroup(),
+	clusterLayer:null,
 	basemaps : {
 		//"Light map": L.tileLayer("https://tiles.mapbox.com/v3/pathgeo.map-jwxvdo36/{z}/{x}/{y}.png?updated=1374825292888",{attribution:"Map Provided by <a href='http://www.mapbox.com/' target='_blank'>MapBox</a>", title:"Light Map"}),
 		//"Terrain map": L.tileLayer("https://tiles.mapbox.com/v3/pathgeo.map-9p1ubd74/{z}/{x}/{y}.png?updated=1374825095067",{attribution:"Map Provided by <a href='http://www.mapbox.com/' target='_blank'>MapBox</a>", title:"Terrain Map"}),
@@ -157,9 +157,7 @@ function init_socket(){
 	
 	app.socket.on("broadcast", function(tweet){
 		if(tweet){
-			
-			console.log(tweet)
-			
+
 			var lat, lng;
 			if(tweet.geo && tweet.geo.coordinates){
 				lat=tweet.geo.coordinates[0];
@@ -172,12 +170,24 @@ function init_socket(){
 			if(lat&&lng){
 				//app.points.push({lat:lat, lon:lng, value:1});
 				//marker
-				var marker=new L.Marker(new L.LatLng(lat, lng)).on("click", function(e){
-					console.log(e);
-				}),
+				var marker=new L.Marker(new L.LatLng(lat, lng)),
 					point=new L.LatLng(lat, lng);
-					
+				
+				
+				marker.tweet=tweet;
 				marker.bindPopup(tweet.text);
+				marker.on("click", function(e){
+					//embed tweet
+					if(e.target && e.target.tweet){
+						var t=e.target.tweet,
+							html="<blockquote class='twitter-tweet'><p><a href='https://twitter.com/"+t.user.screen_name+"/statuses/"+t.id+"'></a></blockquote>";
+						$("#tweetContent").html(html).show();
+						twttr.widgets.load();
+					}
+				});
+				
+				
+				
 				app.clusterLayer.addLayer(marker);
 				
 				//heatmap
@@ -220,6 +230,13 @@ function init_map(){
 	app.heatmapLayer = L.heatLayer([], {radius: 50});
 	
 	
+	//clusterlayer
+	app.clusterLayer=pathgeo.layer.markerCluster(null,{},{
+			//clusterclick event
+			clusterclick : clusterClickHandler
+	})
+	
+	
 	//controls
 	var controls={
 		mapGallery : L.Control.extend({
@@ -249,37 +266,26 @@ function init_map(){
 						if (layer.options.visible) {
 							//hide layers
 							//if geoJsonLayer >> hide all _icon. Other layers, remove layer from map
-							if(value=='geoJsonLayer'){  
-								$.each(layer._layers,function(k,v){
-									$(v._icon).hide();
-								});
-							}else{
-								app.map.removeLayer(layer)
+							if(value=='clusterLayer'){  
+								$("#tweetContent").hide();
 							}
 							
+							app.map.removeLayer(layer)
+					
 //							app.map.removeLayer(layer);
 							$this.css({"background-color" : ''});
 							
 							layer.options.visible=false;
 						} else {
-							//if the layer has not added on the map, add it first. If the layer alreayd has _map, directly show it
-							if(!layer._map){
-								layer.addTo(app.map)
-							}else{
-								//show layer
-								//if geojsonLayer >> show all _icon. Other layers, add on the map
-								if(value=='geoJsonLayer'){  
-									$.each(layer._layers,function(k,v){
-										$(v._icon).show();
-									});
-								}else{
-									layer.addTo(app.map)
-								}
-							}
 							
+							layer.addTo(app.map)
+						
 						
 							//make the markerclusterlayer more priority
-							if(value=='clusterLayer'){layer.bringToFront();}
+							if(value=='clusterLayer'){
+								layer.bringToFront();
+								layer.on("clusterclick", clusterClickHandler);
+							}
 							
 							$this.css({"background-color" : "#5B92C0"});
 
@@ -346,7 +352,8 @@ function init_map(){
 	
 	
 	//insert a div, tweetContent
-	$("#map").append("<div id='tweetContent'><iframe src='https://twitframe.com/show?url=https://twitter.com/Breaking911/status/472482784221884416'></iframe></div>");
+	$("#map").append("<div id='tweetContent'></div>");
+
 
 }
 
@@ -370,6 +377,42 @@ function switchBaseLayer(type){
 }
 
 
+
+
+
+/**
+ * marker cluster click event 
+ */
+var clusterClickHandler=function(e){
+	if(e.layer && e.layer._childCount){
+		if(e.layer._childCount >= 101){
+			alert("Please zoom in to decrease the number of markers less than 100");
+			return; 
+		}
+	}
+	
+	//show loading
+	$("#tweetContent").html("<img src='images/loading.gif' />").show();
+			
+
+			
+	var tweets = pathgeo.util.readClusterFeatureProperies(e.layer, [], "tweet");
+	var html = "<div class='popup'>There are <b>" + e.layer._childCount + "</b> tweets:<p></p>";
+	
+	//open popup for the cluster
+	e.layer.bindPopup(html, {
+		maxWidth : 500,
+		maxHeight : 300
+	}).openPopup();
+				
+	//show tweet
+	var t_html=""
+	$.each(tweets, function(i,t){
+		t_html+="<blockquote class='twitter-tweet'><p><a href='https://twitter.com/"+t.user.screen_name+"/statuses/"+t.id+"'></a></blockquote>";
+	})
+	$("#tweetContent").html(t_html);
+	twttr.widgets.load();
+}
 
 
 
