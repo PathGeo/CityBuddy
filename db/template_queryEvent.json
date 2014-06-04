@@ -3,7 +3,7 @@
 		"id":"53339e59dce45c1474956c87",
 		"title":"Ambrosia",
 		"url":"http://abc.com",
-		"startDate_utc":"3/27/2014T3:00:00",
+		"startDate_utc":"2014-05-27T03:00:00",
 		"thumbnail":"http://www.calprog.com/images/CP2010/ambrosia_band.jpg",
 		"venue":{
 			"name":"Belly Up Tavern",
@@ -34,5 +34,96 @@
 		"description":"",
 		"cost":"",
 		"totalScore":90
+	},
+	{
+		"id":"53339e59dce45c1474956c88",
+		"title":"Blessthefall",
+		"startDate_utc":"2014-05-14T03:30:00",
+		"venue":{
+			"name":"Soma",
+			"url":"https://www.google.com/search?sa=X&rlz=1C1GGGE_enUS454US586&es_sm=93&biw=1920&bih=989&q=soma&stick=H4sIAAAAAAAAAGOovnz8BQMDAx8HsxKXfq6-gVGRcXKyaWtt-EPvWV4uZfEXk3-65x_9vk18EgCj5cDeKwAAAA&ei=fDttU5mbLsqJogTVnYLwCQ&ved=0CJkBEDEwAA",
+			"address":"3350 Sports Arena Blvd, San Diego, CA",
+			"latlon":[],
+			"timezone":""
+		},
+		"categories": [
+			{
+				"parent_id": null,
+				"id": 2000000,
+				"name": "music"
+			}
+		],
+		"thumbnail":"http://www.breakdownmusicpress.com/wp-content/uploads/2012/10/BLESSTHEFALL.jpg",
+		"description":"Blessthefall is an American metalcore band from Phoenix, Arizona, signed to Fearless Records. The band was founded in 2003 by guitarist Mike Frisby, drummer Matt Traynor, and bassist Jared Warth.",
+		"performers": [
+			{
+				"name": "Reverend Horton Heat",
+				"url": "http://seatgeek.com/reverend-horton-heat-tickets",
+				"thumbnail": "http://cdn.chairnerd.com/images/performers-landscape/reverend-horton-heat-d64b49/1528/huge.jpg"
+			}
+		],
+		"url": "http://www.songkick.com/concerts/19293724-blessthefall-at-soma",
+		"cost":"",
+		"totalScore":75
+	},
+	{
+		"id":"53339e59dce45c1474956c89",
+		"title":"We Are Scientists",
+		"startDate_utc":"2014-05-13T03:30:00",
+		"venue":{
+			"name":"The Casbah",
+			"url":"",
+			"address":"2501 Kettner Blvd, San Diego, CA",
+			"latlon":[]
+		},
+		"categories": [
+			{
+				"parent_id": null,
+				"id": 2000000,
+				"name": "music"
+			}
+		],
+		"thumbnail":"http://upload.wikimedia.org/wikipedia/en/b/bd/With_Love_and_Squalor.jpg",
+		"description":"We Are Scientists is a New York-based indie rock band that formed in Berkeley, California, USA in 2000.",
+		"performers": [
+			{
+				"name": "Reverend Horton Heat",
+				"url": "http://seatgeek.com/reverend-horton-heat-tickets",
+				"thumbnail": "http://cdn.chairnerd.com/images/performers-landscape/reverend-horton-heat-d64b49/1528/huge.jpg"
+			}
+		],
+		"url": "http://www.songkick.com/concerts/18622184-we-are-scientists-at-casbah",
+		"cost":"",
+		"totalScore":40
+	},
+	{
+		"id":"53339e59dce45c1474956c90",
+		"title":"Lindsey Stirling",
+		"startDate_utc":"2014-05-13T02:30:00",
+		"venue":{
+			"name":"Humphreys Concerts By The Bay",
+			"url":"",
+			"address":"2241 Shelter Island Dr, San Diego, CA",
+			"latlon":[]
+		},
+		"categories": [
+			{
+				"parent_id": null,
+				"id": 2000000,
+				"name": "art&culture"
+			}
+		],
+		"thumbnail":"https://lh3.googleusercontent.com/-XE_8yjzDN74/U19AdVheCeI/AAAAAAAAfF4/K549btn_tKo/s928-fcrop64=1,00000000ff89ffff/Album-Out-Lindsey-Stirling-Google.jpg",
+		"description":"Lindsey Stirling is an American violinist, dancer, performance artist, and composer. She presents choreographed violin performances, both live and in music videos found on her YouTube channel, Lindseystomp, which she introduced in 2007.",
+		"performers": [
+			{
+				"name": "Reverend Horton Heat",
+				"url": "http://seatgeek.com/reverend-horton-heat-tickets",
+				"thumbnail": "http://cdn.chairnerd.com/images/performers-landscape/reverend-horton-heat-d64b49/1528/huge.jpg"
+			}
+		],
+		"url": "http://www.humphreysconcerts.com/schedule_long.cfm",
+		"cost":"",
+		"totalScore":60
 	}
 ]

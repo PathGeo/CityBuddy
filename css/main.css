@@ -99,6 +99,20 @@ ul {list-style:none; }
 #page-searchResult #searchResult .tag {margin-right:5px; float:right; font-size:80%; padding:0.5em; border-radius:5px; background-color:#ffffff; border:1px solid #cccccc; }
 
 
+
+
+/**
+ * 	page eventdetail
+ */
+#page-eventDetail #detail_media, #page-eventDetail #mediaWall {width:100%; }
+#page-eventDetail #mediaWall .item {}
+
+
+
+
+
+
+
 /**
  * 	responsive
  */

@@ -3,6 +3,7 @@ var app={
 	searchResult:null,
 	testmode:true,
 	socket:io.connect("http://www.pathgeo.com:8080/socket-citybuddy"),
+	mediaWall: null,
 	map : null,
 	initCenterLatLng : [35, -100],
 	initCenterZoom : 4,
@@ -95,7 +96,7 @@ $(function(){
 		
 
 		//search event
-		searchEvent();
+		searchEvent({showSlider:true});
 
 
 		
@@ -120,6 +121,40 @@ $(function(){
 			}
 		})
 		
+
+		//when switch pages
+		$("div[data-role='page']").on({
+			"pageshow":function(e,ui){
+				$(this).find("ul[data-role='listview']").listview("refresh");
+				
+				
+				//media wall
+				$("div.item img").each(function(){
+					var w=1 + 3 * Math.random() << 0;
+					
+					//$(this).css({width: w*100})
+					//.load(function(){
+					//	console.log('image loaded');
+					//	app.mediaWall.fitWidth();
+					//});
+				});
+				
+				app.mediaWall=new freewall("#mediaWall");
+				
+				app.mediaWall.reset({
+					selector: '.item',
+					animate: true,
+					cellW: 'auto',
+					cellH: 150,
+					onResize: function() {
+						app.mediaWall.fitWidth();
+					}
+				});
+				app.mediaWall.fitWidth();
+				$(window).trigger("resize");
+				
+			}
+		});
 		
 		//when resize the window
 		$(window).on({
@@ -422,16 +457,41 @@ var clusterClickHandler=function(e){
  * searchEvent 
  * @param {String location
  */
-function searchEvent(location){
-	var url=(app.testmode)?"db/searchEvent.json":"ws/searchEvent.py?location="+location+"&time=&category=";
+function searchEvent(options){
+	//options
+	var now=new Date(),
+		today=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate(),
+		twoWeekDate=new Date(now.getTime()+ (1000*60*60*24*14)),
+		twoWeek=twoWeekDate.getFullYear()+"-"+(twoWeekDate.getMonth()+1)+"-"+twoWeekDate.getDate();
+
 	
-	//search event
+	if(!options){options={}}
+	options.titles=options.titles || "";
+	options.performers=options.performers || "";
+	options.startDate=options.startDate || today;
+	options.endDate=options.endDate || twoWeek;
+	options.venue=options.venue || "";
+	options.categories=options.categories || "";
+	options.showSlider=options.showSlider || false;
+	
+	//trim
+	var trim=function(array){
+		return $.map(array, function(v,i){return $.trim(v)})
+	};
+	options.titles=trim(options.titles.split(","));
+	options.performers=trim(options.performers.split(","));
+	options.categories=trim(options.categories.split(","));
+	
+	
+	var url=(app.testmode)?"db/template_queryEvent.json":"ws/searchEvent.py?titles="+options.titles.join(",")+"&startDate="+options.startDate+"&endDate="+options.endDate+"&categories="+options.categories.join(",")+"&performers="+options.performers.join(",")+"&venue="+options.venue;
+	
+	//query event
 	$.getJSON(url, function(json){
 		if(json){
-			app.searchResult=json;
+			app.searchResults=json
 			
 			//generate search list
-			showSearchResult(json);
+			showSearchResult(json, options.showSlider);
 		}	
 	});
 }
@@ -441,43 +501,168 @@ function searchEvent(location){
 
 /**
  * showSearchResult 
- * @param {Object} json
+ * @param {Array} results
  */
-function showSearchResult(json){
+function showSearchResult(results, showSlider){
 	var html='',
-		length=json.length,
-		$target=$("#slider"),
+		html_slider='',
+		length=results.length,
+		$target=$("#searchResult"),
+		$slider=$("#slider"),
 		venue,
-		star="<img src='images/1399611719_star.png' alt='Social Rank'/>&nbsp; &nbsp; ";
+		star="<img src='images/1399611719_star.png' alt='Social Rank'/>&nbsp; ",
+		groups={},
+		date="";
+
+	//sort results by date
+	results.sort(function(a,b){
+		return moment.utc(a.startDate_utc) - moment.utc(b.startDate_utc);
+	})
 	
+	
+	//regroup event by dates
+	$.each(results, function(i,evt){
+		evt.startDate_local=moment.utc(evt.startDate_utc).local();
+		date=evt.startDate_local.format("ddd, MMM Do, YYYY");
+		
+		if(!groups[date]){
+			groups[date]=[evt]
+		}else{
+			groups[date].push(evt);
+		}
+	})
 
-	//read json
-	$.each(json, function(i, evt){
-		evt.thumbnail=evt.thumbnail || "images/1394974803_plan.png";
-		var description=String(evt.description).substr(0, 300) + '.....';
-		venue=evt.venue;
-		reviews=evt.reviews; 
-
-		//html
-		html+="<li>"+
-			 	"<img src='"+evt.thumbnail+"'>"+
-			 	"<div class='flex-caption'>"+
-			 		"<h1>"+evt.name+"</h1>"+
-			 		"<p>"+evt.date+", "+evt.time+" @ <a href='"+ ((venue.url&&venue.url!='')?venue.url:"#")+"' target='_blank'>"+venue.name+"</a><br>"+venue.address+"</p>"+
-			 		"<div class='socialRank'>"+ (function(count){
-			 			//repeat star
-			 			if(count>0){
-			 				return new Array(count+1).join(star);
-			 			}
-			 		})(reviews.rank) +"</div>"+
-			 	"</div>"+
-			 "</li>";
+	
+	//show results
+	$.each(groups, function(date, events){
+		
+		html+= "<li data-role='list-divider'>"+date+"<span class='ui-li-count'>"+events.length+"</span></li>";
+		
+		//sort events by date
+		events.sort(function(a,b){
+			return moment.utc(a.startDate_utc) - moment.utc(b.startDate_utc);
+		})
+	
+		
+		//parse event
+		$.each(events, function(i,evt){
+			evt.thumbnail=evt.thumbnail || "images/1394974803_plan.png";
+			var description=String(evt.description).substr(0, 300) + '.....',
+				venue=evt.venue,
+				reviews=evt.reviews,
+				score=(function(){
+					if(evt.totalScore){
+						var count=Math.round(evt.totalScore / 20);	
+						return new Array(count+1).join(star);
+					}
+				})(),
+				categories=$.map(evt.categories, function(v,i){return "<p class='tag'>"+v.name+"</p>"})
+	
+			
+			//html
+			html+= "<li data-id='"+evt.id+"'><a href='#'>"+
+			    		"<img src='"+evt.thumbnail+"' />"+
+					    "<h2>"+evt.title+"</h2>"+
+					    "<p><strong>"+evt.startDate_local.format("YYYY-MM-DD  HH:mm:ss")+"</strong></p>"+
+					    "<p>"+venue.name+"</p>"+
+					    "<p class='ui-li-aside'>"+score+"</p>"+
+			    		"<div class='tagContent'>"+categories.join("")+"</div>"+
+			    	"</a></li>";
+			
+			
+			
+			if(showSlider){
+				html_slider+="<li data-id='"+evt.id+"''>"+
+				 	"<img src='"+evt.thumbnail+"'>"+
+				 	"<div class='flex-caption'>"+
+				 		"<h1>"+evt.title+"</h1>"+
+				 		"<p>"+evt.startDate_local.format("YYYY-MM-DD  HH:mm:ss")+" @ <a href='"+ ((venue.url&&venue.url!='')?venue.url:"#")+"' target='_blank'>"+venue.name+"</a><br>"+venue.address+"</p>"+
+				 		"<div class='socialRank'>"+ score +"</div>"+
+				 	"</div>"+
+				 "</li>";
+			}
+		});
 	});
 	
-	$target.find("ul.slides").html(html);
-	$target.flexslider({
-		animation: "fade"
-	});
+	
+	//show
+	$target.html(html).find("li:not([data-role='list-divider'])").click(getEventDetail);
+	
+
+	if(showSlider){
+		$slider.find("ul.slides").html(html_slider).find("li").click(getEventDetail);
+		$slider.flexslider({
+			animation: "fade"
+		});
+	}else{
+		//switch to page-searchResult
+		changePage("#page-searchResult");
+	}
+	
+}
+
+
+
+
+
+
+/**
+ * getEventDetail 
+ */
+function getEventDetail(e){
+	var $this=$(this),
+		id=$this.attr("data-id"),
+		evt=(function(){
+			var result=null;
+			$.each(app.searchResults, function(i,obj){
+				if(obj.id===id){
+					result=obj
+					return false
+				}
+			})
+			return result;
+		})();
+
+	
+	//get reviews
+	if(id && !evt.reviews){
+		var url=(app.testmode)?"db/template_getEventDetail.json":"";
+		
+		$.getJSON(url, function(json){
+			evt.reviews=json.reviews
+			showEventDetail(evt);
+		})
+	}else{
+		showEventDetail(evt);
+	}
+}
+
+
+
+
+
+/**
+ *  showEventDetail 
+ */
+function showEventDetail(evt){
+	console.log(evt)
+	
+	
+	
+	
+	
+	//switch to page-eventDetail
+	changePage("#page-eventDetail");
+}
+	
+
+
+
+
+function changePage(target, options){
+	if(!options){options={}}
+	
+	$.mobile.pageContainer.pagecontainer("change", target, options);
 }
 
 

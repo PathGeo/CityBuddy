@@ -1,11 +1,12 @@
-[
-	{
+{
 		"id":"53339e59dce45c1474956c87",
 		"title":"Ambrosia",
 		"reviews":{
 			"totalScore":90,
 			"twitter":[
 				{
+					"id":"",
+					"username":"",
 					"content":"",
 					"photos":[
 						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
@@ -21,6 +22,8 @@
 			],
 			"facebook":[
 				{
+					"id":"",
+					"username":"",
 					"content":"",
 					"photos":[
 						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
@@ -45,5 +48,4 @@
 				"url":""
 			}
 		}
-	}
-]
+}
