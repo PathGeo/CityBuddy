@@ -18,6 +18,7 @@
     
 	<script src="js/jquery/jquery-1.11.0.min.js"></script>
     <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/jquery/jquery.cookie.js"></script> 
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script src="js/grid/freewall.js"></script>
     <script src="js/flexslider/jquery.flexslider.js"></script>
@@ -58,12 +59,8 @@
 	    	<div class='ui-grid-a category'>
 	    		<div class='ui-block-a'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341288_art-gallery.png' /><p>Art & Culture</p></a></div></div>
 	    		<div class='ui-block-b'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341683_music.png' /><p>Music</p></a></div></div>
-	    	</div>
-	    	<div class='ui-grid-a category'>
 	    		<div class='ui-block-a'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341485_soccer.png' /><p>Sport</p></a></div></div>
 	    		<div class='ui-block-b'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341382_warehouse.png' /><p>Community</p></a></div></div>
-	    	</div>
-	    	<div class='ui-grid-a category'>
 	    		<div class='ui-block-a'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341888_briefcase.png' /><p>Convention</p></a></div></div>
 	    		<div class='ui-block-b'><div class="ui-bar ui-bar-a"><a href=''><img src='images/1401341718_519689-196_Time.png' /><p>Real-Time</p></a></div></div>
 	    	</div>
@@ -137,27 +134,52 @@
 		<!--main-->
 	    <div role="main" class="ui-content">
 	    	<!--detail meta-->
-	    	<div id='detail_meta'>meta</div>
-	    	
-	    	<!--detail media-->
-	    	<div id='detail_media'>
-	    		<div id='mediaWall'>
-	    			<div class='item'><img src='images/1401336095_social_8.png' /></div>
-	    			<div class='item'><img src='images/download.jpg' /></div>
-	    			<div class='item'><img src='images/images.jpg' /></div>
-	    			<div class='item'><img src='images/route.png' /></div>
-	    			<div class='item w2'><img src='images/basemap/ocean.jpg' /></div>
-	    			<div class='item'><img src='images/With_Love_and_Squalor.jpg' /></div>
-	    			<div class='item'><img src='images/1401336095_social_8.png' /></div>
-	    			<div class='item'><img src='images/1401336095_social_8.png' /></div>
-	    			<div class='item'><img src='images/1401336095_social_8.png' /></div>
-	    			<div class='item'><img src='images/1401336095_social_8.png' /></div>
-	    			<div class='item'><img src='images/1401336095_social_8.png' /></div>
+	    	<div id='detail_meta'>
+	    		<div class='event-image'><img src='images/images.jpg' /></div>
+	    		<div class='event-info'>
+	    			<ul>
+		    			<li><h2>title</h2></li>
+		    			<li>time</li>
+		    			<li>location<label>address</label></li>
+		    			<li>description</li>
+	    			</ul>
 	    		</div>
 	    	</div>
 	    	
+	    	<!--detail media-->
+	    	<div id='detail_mediaWall' class='ui-grid-c'>
+	    			<h3>Media from Twitter & Facebook</h3>
+	    			<div class='item ui-block-a'><img src='images/With_Love_and_Squalor.jpg' /></div>
+	    			<div class='item ui-block-b'><img src='images/download.jpg' /></div>
+	    			<div class='item ui-block-c'><img src='images/images.jpg' /></div>
+	    			<div class='item ui-block-d'><img src='images/route.png' /></div>
+	    			<div class='item ui-block-a'><img src='images/basemap/ocean.jpg' /></div>
+	    			<div class='item ui-block-b'><img src='images/With_Love_and_Squalor.jpg' /></div>
+	    			<div class='item ui-block-c'><img src='images/With_Love_and_Squalor.jpg' /></div>
+	    			<div class='item ui-block-d'><img src='images/With_Love_and_Squalor.jpg' /></div>
+	    	</div>
+	    	
 	    	<!--detail comments-->
-	    	<div id='detail_comment'>comment</div>
+	    	<div id='detail_comment'>
+	    		<h3>Comments from Twitter & Facebook</h3>
+	    		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search fruits..." data-inset="true" >
+				    <li><a href="#">
+				        <img src="images/With_Love_and_Squalor.jpg">
+					    <h2>Broken Bells</h2>
+					    <p>Broken Bells</p></a>
+				    </li>
+				    <li><a href="#">
+				        <img src="images/With_Love_and_Squalor.jpg">
+					    <h2>Warning</h2>
+					    <p>Hot Chip</p></a>
+				    </li>
+				    <li><a href="#">
+				        <img src="images/With_Love_and_Squalor.jpg">
+					    <h2>Wolfgang Amadeus Phoenix</h2>
+					    <p>Phoenix</p></a>
+				    </li>
+				</ul>
+	    	</div>
 	    	
 	    	
 	

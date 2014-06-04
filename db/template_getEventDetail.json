@@ -5,9 +5,39 @@
 			"totalScore":90,
 			"twitter":[
 				{
-					"id":"",
-					"username":"",
-					"content":"",
+					"id":"473891246029541376",
+					"username":"SDSU_INTL",
+					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
+					"photos":[
+						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
+					],
+					"videos":[
+						"https://www.youtube.com/watch?v=PNu_-deVemE"
+					],
+					"score":60,
+					"index":{
+						"retweet":30
+					}
+				},
+				{
+					"id":"473891246029541377",
+					"username":"SDSU_INTL",
+					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
+					"photos":[
+						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
+					],
+					"videos":[
+						"https://www.youtube.com/watch?v=PNu_-deVemE"
+					],
+					"score":60,
+					"index":{
+						"retweet":30
+					}
+				},
+				{
+					"id":"473891246029541378",
+					"username":"SDSU_INTL",
+					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
 					"photos":[
 						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
 					],
@@ -22,9 +52,43 @@
 			],
 			"facebook":[
 				{
-					"id":"",
-					"username":"",
-					"content":"",
+					"id":"473891246029541379",
+					"username":"SDSU_INTL",
+					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
+					"photos":[
+						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
+					],
+					"videos":[
+						"https://www.youtube.com/watch?v=PNu_-deVemE"
+					],
+					"score":75,
+					"index":{
+						"going":30,
+						"maybe":4,
+						"invited":100
+					}
+				},
+				{
+					"id":"473891246029541380",
+					"username":"SDSU_INTL",
+					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
+					"photos":[
+						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
+					],
+					"videos":[
+						"https://www.youtube.com/watch?v=PNu_-deVemE"
+					],
+					"score":75,
+					"index":{
+						"going":30,
+						"maybe":4,
+						"invited":100
+					}
+				},
+				{
+					"id":"473891246029541381",
+					"username":"SDSU_INTL",
+					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
 					"photos":[
 						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
 					],

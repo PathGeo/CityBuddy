@@ -1,9 +1,15 @@
+
+//use json in the cookie
+$.cookie.json=true;
+
+
 //global variable
 var app={
 	searchResult:null,
 	testmode:true,
 	socket:io.connect("http://www.pathgeo.com:8080/socket-citybuddy"),
 	mediaWall: null,
+	readCookie:true, 
 	map : null,
 	initCenterLatLng : [35, -100],
 	initCenterZoom : 4,
@@ -125,33 +131,60 @@ $(function(){
 		//when switch pages
 		$("div[data-role='page']").on({
 			"pageshow":function(e,ui){
-				$(this).find("ul[data-role='listview']").listview("refresh");
+				var $this=$(this);
 				
 				
-				//media wall
-				$("div.item img").each(function(){
-					var w=1 + 3 * Math.random() << 0;
-					
-					//$(this).css({width: w*100})
-					//.load(function(){
-					//	console.log('image loaded');
-					//	app.mediaWall.fitWidth();
-					//});
-				});
+				$this.find("ul[data-role='listview']").listview("refresh");
 				
-				app.mediaWall=new freewall("#mediaWall");
 				
-				app.mediaWall.reset({
-					selector: '.item',
-					animate: true,
-					cellW: 'auto',
-					cellH: 150,
-					onResize: function() {
-						app.mediaWall.fitWidth();
+				
+				var id=$this.attr("id");
+				if(id&&id!=''){
+					switch(id){
+						case "page-eventDetail":
+							
+							//if ther is a cookie and not trigger from user's click.
+							if($.cookie("CityBuddy") && $.cookie("CityBuddy").eventDetail && app.readCookie){
+								console.log("read from cookie");
+								showEventDetail($.cookie("CityBuddy").eventDetail);
+							}
+							
+							
+							//media wall
+							$("div.item img").each(function(){
+								var w=1 + 3 * Math.random() << 0;
+								
+								//$(this).css({width: w*100})
+								//.load(function(){
+								//	console.log('image loaded');
+								//	app.mediaWall.fitWidth();
+								//});
+							});
+							
+							/**
+							app.mediaWall=new freewall("#mediaWall");
+							
+							app.mediaWall.reset({
+								selector: '.item',
+								animate: true,
+								cellW: 'auto',
+								cellH: 150,
+								onResize: function() {
+									app.mediaWall.fitWidth();
+								}
+							});
+							app.mediaWall.fitWidth();
+							$(window).trigger("resize");
+							*/
+						break;
+						
+						
+						
 					}
-				});
-				app.mediaWall.fitWidth();
-				$(window).trigger("resize");
+					
+				}
+				
+				
 				
 			}
 		});
@@ -525,6 +558,8 @@ function showSearchResult(results, showSlider){
 		evt.startDate_local=moment.utc(evt.startDate_utc).local();
 		date=evt.startDate_local.format("ddd, MMM Do, YYYY");
 		
+		evt.startDate_localString=date;
+		
 		if(!groups[date]){
 			groups[date]=[evt]
 		}else{
@@ -623,6 +658,9 @@ function getEventDetail(e){
 			return result;
 		})();
 
+	//not read from cookie
+	app.readCookie=false;
+	
 	
 	//get reviews
 	if(id && !evt.reviews){
@@ -644,15 +682,56 @@ function getEventDetail(e){
 /**
  *  showEventDetail 
  */
-function showEventDetail(evt){
-	console.log(evt)
+function showEventDetail(evt){	
+
+	//save event to cookie
+	if(!app.readCookie){
+		console.log("write cookie")
+		$.cookie("CityBuddy", {eventDetail: evt}, {expires: 7, path: '/'});
+	}
+	
+	console.log($.cookie("CityBuddy"))
+	
+	//event info
+	var $target=$("#detail_meta"),
+		html_info="<li class='detail-title'>"+evt.title+"</li>"+
+				  "<li class='detail-time'>"+evt.startDate_localString+"</li>"+
+				  "<li class='detail-location'>"+evt.venue.name + "<br><label>"+evt.venue.address+"</label></li>"+
+				  "<li class='detail-description'>"+evt.description + "</li>";
+				  
+	$target.find(".event-image img").attr("src", evt.thumbnail);
+	$target.find(".event-info > ul").html(html_info);
 	
 	
+	
+	//event photos and comments from social media
+	if(evt.reviews){
+		var medias={}, html_media="", html_comment="";
+		
+		$.each(evt.reviews, function(source, comments){
+			
+			if(source!='totalScore'){
+				//parse comments
+				$.each(comments, function(i,obj){
+					//console.log(obj)
+					medias[obj.id]=[].concat(obj.photos);
+					medias[obj.id]=medias[obj.id].concat(obj.videos)
+				});
+			}
+			
+		})
+		
+	//console.log(medias)
+		
+		
+	}
+
 	
 	
 	
 	//switch to page-eventDetail
 	changePage("#page-eventDetail");
+	
 }
 	
 
