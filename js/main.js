@@ -130,6 +130,10 @@ $(function(){
 
 		//when switch pages
 		$("div[data-role='page']").on({
+			"pageinit": function(){
+				
+			},
+			
 			"pageshow":function(e,ui){
 				var $this=$(this);
 				
@@ -685,12 +689,14 @@ function getEventDetail(e){
 function showEventDetail(evt){	
 
 	//save event to cookie
+	//something wrong with the cookie. cannot save the whole evt correctly.
 	if(!app.readCookie){
 		console.log("write cookie")
-		$.cookie("CityBuddy", {eventDetail: evt}, {expires: 7, path: '/'});
+		console.log(evt);
+		$.cookie("CityBuddy", {'eventDetail': evt});
 	}
 	
-	console.log($.cookie("CityBuddy"))
+
 	
 	//event info
 	var $target=$("#detail_meta"),
@@ -706,7 +712,7 @@ function showEventDetail(evt){
 	
 	//event photos and comments from social media
 	if(evt.reviews){
-		var medias={}, html_media="", html_comment="";
+		var medias={}, html_media="", html_comment="", count=0;
 		
 		$.each(evt.reviews, function(source, comments){
 			
@@ -714,23 +720,54 @@ function showEventDetail(evt){
 				//parse comments
 				$.each(comments, function(i,obj){
 					//console.log(obj)
-					medias[obj.id]=[].concat(obj.photos);
-					medias[obj.id]=medias[obj.id].concat(obj.videos)
+					html_media+=composeMediaWallHtml(obj.photos)
+					html_media+=composeMediaWallHtml(obj.videos)
+					
 				});
 			}
 			
 		})
-		
-	//console.log(medias)
-		
-		
+		$("#detail_mediaWall").append(html_media);
 	}
 
-	
+
 	
 	
 	//switch to page-eventDetail
 	changePage("#page-eventDetail");
+	
+	
+	
+	//mediaWall
+	function composeMediaWallHtml(array){
+		var classes=["ui-block-a","ui-block-b","ui-block-c","ui-block-d"],
+			c="",
+			isVideo=false,
+			result="";
+		
+		array=$.map(array, function(v,i){
+			//detemine class
+			c=classes[count % 4];
+			count++
+			
+			result="";
+			
+			//determine source
+			var check=v.match('www.youtube.com') || v.match(/www.facebook.com\/photo.php\?v=(.*)/);
+			if (check){
+				if(check[0]=='www.youtube.com'){
+					result="<iframe class='opengraph-video'  src='https://www.youtube.com/embed/"+ decodeURIComponent(v+"&").match(/v=(.*)&/)[1].split('&')[0] +"' frameborder='0' allowfullscreen></iframe>";
+				}else{
+					result="<iframe class='opengraph-video' src='https://www.facebook.com/video/embed?video_id="+check[1]+"' frameborder='0' allowfullscreen></iframe>"; 
+				}
+			}else{
+				result="<img src='"+ v +"' />";
+			}
+			
+			return "<div class='item "+c+"'>"+result+"</div>";
+		});
+		return array.join("");
+	}
 	
 }
 	
