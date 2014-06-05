@@ -691,11 +691,11 @@ function showEventDetail(evt){
 	//save event to cookie
 	//something wrong with the cookie. cannot save the whole evt correctly.
 	if(!app.readCookie){
-		console.log("write cookie")
-		console.log(evt);
-		$.cookie("CityBuddy", {'eventDetail': evt});
+		console.log("write cookie");
+		//$.removeCookie("CityBuddy",{ expires: 7, path: '/' })
+		$.cookie("CityBuddy", {'eventID': evt.id},{ expires: 7, path: '/' });
 	}
-	
+
 
 	
 	//event info

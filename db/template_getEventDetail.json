@@ -1,6 +1,38 @@
 {
 		"id":"53339e59dce45c1474956c87",
 		"title":"Ambrosia",
+		"url":"http://abc.com",
+		"startDate_utc":"2014-05-27T03:00:00",
+		"thumbnail":"http://www.calprog.com/images/CP2010/ambrosia_band.jpg",
+		"venue":{
+			"name":"Belly Up Tavern",
+			"url":"",
+			"address":"asdas",
+			"city":"",
+			"state":"",
+			"country":"",
+			"latlon":{
+				"lat":32.99,
+				"lon":-117.27
+			}
+		},
+		"performers":[
+			{
+				"name":"",
+				"url":"",
+				"thumbnail":""
+			}
+		],
+		"source":"SeatGeak",
+		"categories":[
+			{
+				"id":"",
+				"name":"music"
+			}
+		],
+		"description":"",
+		"cost":"",
+		"totalScore":90
 		"reviews":{
 			"totalScore":90,
 			"twitter":[
