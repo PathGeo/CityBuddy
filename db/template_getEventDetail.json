@@ -1,147 +1,87 @@
+
 {
-		"id":"53339e59dce45c1474956c87",
-		"title":"Ambrosia",
-		"url":"http://abc.com",
-		"startDate_utc":"2014-05-27T03:00:00",
-		"thumbnail":"http://www.calprog.com/images/CP2010/ambrosia_band.jpg",
-		"venue":{
-			"name":"Belly Up Tavern",
-			"url":"",
-			"address":"asdas",
-			"city":"",
-			"state":"",
-			"country":"",
-			"latlon":{
-				"lat":32.99,
-				"lon":-117.27
-			}
-		},
-		"performers":[
-			{
-				"name":"",
-				"url":"",
-				"thumbnail":""
-			}
-		],
-		"source":"SeatGeak",
-		"categories":[
-			{
-				"id":"",
-				"name":"music"
-			}
-		],
-		"description":"",
-		"cost":"",
-		"totalScore":90
-		"reviews":{
-			"totalScore":90,
-			"twitter":[
-				{
-					"id":"473891246029541376",
-					"username":"SDSU_INTL",
-					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
-					"photos":[
-						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
-					],
-					"videos":[
-						"https://www.youtube.com/watch?v=PNu_-deVemE"
-					],
-					"score":60,
-					"index":{
-						"retweet":30
-					}
-				},
-				{
-					"id":"473891246029541377",
-					"username":"SDSU_INTL",
-					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
-					"photos":[
-						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
-					],
-					"videos":[
-						"https://www.youtube.com/watch?v=PNu_-deVemE"
-					],
-					"score":60,
-					"index":{
-						"retweet":30
-					}
-				},
-				{
-					"id":"473891246029541378",
-					"username":"SDSU_INTL",
-					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
-					"photos":[
-						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
-					],
-					"videos":[
-						"https://www.youtube.com/watch?v=PNu_-deVemE"
-					],
-					"score":60,
-					"index":{
-						"retweet":30
-					}
-				}
-			],
-			"facebook":[
-				{
-					"id":"473891246029541379",
-					"username":"SDSU_INTL",
-					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
-					"photos":[
-						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
-					],
-					"videos":[
-						"https://www.youtube.com/watch?v=PNu_-deVemE"
-					],
-					"score":75,
-					"index":{
-						"going":30,
-						"maybe":4,
-						"invited":100
-					}
-				},
-				{
-					"id":"473891246029541380",
-					"username":"SDSU_INTL",
-					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
-					"photos":[
-						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
-					],
-					"videos":[
-						"https://www.youtube.com/watch?v=PNu_-deVemE"
-					],
-					"score":75,
-					"index":{
-						"going":30,
-						"maybe":4,
-						"invited":100
-					}
-				},
-				{
-					"id":"473891246029541381",
-					"username":"SDSU_INTL",
-					"content":"Did anyone attend the Lady Gaga concert last night at the @viejas_arena ?! What has been your favorite concert on campus? #SDSU #SDSUINTL",
-					"photos":[
-						"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcReXHyKDq1KP8yOBKewcRxC9dKRQIBe5xzKG-pqwBdLIN9vDwYj5M4"
-					],
-					"videos":[
-						"https://www.youtube.com/watch?v=PNu_-deVemE"
-					],
-					"score":75,
-					"index":{
-						"going":30,
-						"maybe":4,
-						"invited":100
-					}
-				}
-			]
-		},
-		"tickets":{
-			"seatGeak":{
-				"url":""
-			},
-			"ticketMaster":{
-				"url":""
-			}
-		}
+  "id": "5379f91fdce45c19d865243f",
+  "title": "DJ Slowhand",
+  "url": "http://www.sandiegoreader.com/events/2014/may/19/79805/",
+  "startDate_utc": "2014-05-19T21:00:00.000Z",
+  "venue": {
+    "latlon": {
+      "lat": 32.711697,
+      "lon": -117.16042
+    },
+    "city": "San Diego",
+    "name": "Barleymash",
+    "country": "US",
+    "state": "CA"
+  },
+  "source": "SanDiegoReader",
+  "categories": [
+    {
+      "name": "community"
+    }
+  ],
+  "description": "",
+  "cost": "Not available",
+  "tickets": {
+    "seatGeek": {
+      "url": ""
+    },
+    "ticketMaster": {
+      "url": ""
+    }
+  },
+  "reviews": {
+    "totalScore": 0,
+    "twitter": [
+      {
+        "content": "Start the weekend off with #HappyHour from 4pm-6pm, then stick around for DJ Slowhand spinning later tonight!",
+        "images": [],
+        "videos": [],
+        "score": 0,
+        "index": {
+          "retweet": 0
+        },
+        "id": "467439735481597952",
+        "profileImage": "https://pbs.twimg.com/profile_images/1681242764/Twitter_WestCoast_Logo_300_normal.jpg",
+        "username": "westcoasttavern"
+      },
+      {
+        "content": "RT @djslowhand: Hyped for tonight at barleymash the best monday event in San Diego. see you there. Sleeping Giant Music, \n\nAnd... http://t.…",
+        "images": [],
+        "videos": [],
+        "score": 0,
+        "index": {
+          "retweet": 0
+        },
+        "id": "466020208487202817",
+        "profileImage": "https://pbs.twimg.com/profile_images/456607607893938176/zFUgh1Ce_normal.jpeg",
+        "username": "iSAIDiLIKE"
+      },
+      {
+        "content": "My new sounds: O fortuna -  AD NIGHT CLUB theme- ( DJ SLOWHAND + DJ POUND remix ) http://t.co/w4JcewDXar on #SoundCloud",
+        "images": [],
+        "videos": [],
+        "score": 0,
+        "index": {
+          "retweet": 0
+        },
+        "id": "466005681615941632",
+        "profileImage": "https://pbs.twimg.com/profile_images/1184104307/slowhandlogo5_normal.jpg",
+        "username": "djslowhand"
+      },
+      {
+        "content": "Hyped for tonight at barleymash the best monday event in San Diego. see you there. Sleeping Giant Music, \n\nAnd... http://t.co/sfSx7xqlEv",
+        "images": [],
+        "videos": [],
+        "score": 0,
+        "index": {
+          "retweet": 0
+        },
+        "id": "466003930669780992",
+        "profileImage": "https://pbs.twimg.com/profile_images/1184104307/slowhandlogo5_normal.jpg",
+        "username": "djslowhand"
+      }
+    ],
+    "facebook": []
+  }
 }

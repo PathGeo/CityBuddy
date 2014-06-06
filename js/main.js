@@ -5,8 +5,8 @@ $.cookie.json=true;
 
 //global variable
 var app={
-	searchResult:null,
-	testmode:true,
+	searchResult:{},
+	testmode:false,
 	socket:io.connect("http://www.pathgeo.com:8080/socket-citybuddy"),
 	mediaWall: null,
 	readCookie:true, 
@@ -134,8 +134,25 @@ $(function(){
 				
 			},
 			
+			"pagebeforeshow": function(e, ui){
+				var $this=$(this),
+					id=$this.attr("id"),
+					eventID=$this.attr("data-eventID") || ((location.href.indexOf("?id=")!=-1)?location.href.match(/id=([^&]+)/)[1]:null);
+				
+				
+				if(id=='page-eventDetail' && eventID && eventID!=''){
+						//add id into url parameter
+						if(location.href.indexOf("?id=")==-1){
+							location.href+="?id="+eventID
+						}
+						//get event
+						getEventDetail(eventID);
+				} 
+			
+			},
+			
 			"pageshow":function(e,ui){
-				var $this=$(this);
+				$this=$(this);
 				
 				
 				$this.find("ul[data-role='listview']").listview("refresh");
@@ -147,11 +164,7 @@ $(function(){
 					switch(id){
 						case "page-eventDetail":
 							
-							//if ther is a cookie and not trigger from user's click.
-							if($.cookie("CityBuddy") && $.cookie("CityBuddy").eventDetail && app.readCookie){
-								console.log("read from cookie");
-								showEventDetail($.cookie("CityBuddy").eventDetail);
-							}
+							
 							
 							
 							//media wall
@@ -519,14 +532,18 @@ function searchEvent(options){
 	options.performers=trim(options.performers.split(","));
 	options.categories=trim(options.categories.split(","));
 	
-	
-	var url=(app.testmode)?"db/template_queryEvent.json":"ws/searchEvent.py?titles="+options.titles.join(",")+"&startDate="+options.startDate+"&endDate="+options.endDate+"&categories="+options.categories.join(",")+"&performers="+options.performers.join(",")+"&venue="+options.venue;
+
+	var url=(app.testmode)?"db/template_queryEvent.json":"//www.pathgeo.com:8080/citybuddy/query?title="+options.titles.join(",")+"&startDate="+options.startDate+"&endDate="+options.endDate+"&categories="+options.categories.join(",")+"&performers="+options.performers.join(",")+"&venue="+options.venue +"&jsoncallback=?";
 	
 	//query event
 	$.getJSON(url, function(json){
 		if(json){
-			app.searchResults=json
-			
+			var obj={}
+			$.each(json, function(i,v){
+				obj[v.id]=v
+			})
+			app.searchResult=obj;
+
 			//generate search list
 			showSearchResult(json, options.showSlider);
 		}	
@@ -625,11 +642,18 @@ function showSearchResult(results, showSlider){
 	
 	
 	//show
-	$target.html(html).find("li:not([data-role='list-divider'])").click(getEventDetail);
-	
+	$target.html(html).find("li:not([data-role='list-divider'])").click(function(e){
+		$("#page-eventDetail").attr("data-eventID", $(this).attr('data-id'));
+		changePage("#page-eventDetail");
+	});
+
 
 	if(showSlider){
-		$slider.find("ul.slides").html(html_slider).find("li").click(getEventDetail);
+		$slider.find("ul.slides").html(html_slider).find("li").click(function(e){
+			$("#page-eventDetail").attr("data-eventID", $(this).attr('data-id'));
+			changePage("#page-eventDetail");
+			
+		});
 		$slider.flexslider({
 			animation: "fade"
 		});
@@ -648,34 +672,28 @@ function showSearchResult(results, showSlider){
 /**
  * getEventDetail 
  */
-function getEventDetail(e){
-	var $this=$(this),
-		id=$this.attr("data-id"),
-		evt=(function(){
-			var result=null;
-			$.each(app.searchResults, function(i,obj){
-				if(obj.id===id){
-					result=obj
-					return false
-				}
-			})
-			return result;
-		})();
-
-	//not read from cookie
-	app.readCookie=false;
-	
-	
-	//get reviews
-	if(id && !evt.reviews){
-		var url=(app.testmode)?"db/template_getEventDetail.json":"";
+function getEventDetail(id){
+	if(id && id!=''){
+		var url=(app.testmode)?"db/template_getEventDetail.json":"//www.pathgeo.com:8080/citybuddy/event/"+id+"?jsoncallback=?";
 		
-		$.getJSON(url, function(json){
-			evt.reviews=json.reviews
-			showEventDetail(evt);
-		})
-	}else{
-		showEventDetail(evt);
+		if(app.searchResult && app.searchResult[id] && app.searchResult[id].reviews){
+			showEventDetail(app.searchResult[id]);
+		}else{
+			$.getJSON(url, function(json){
+				if(json && !json.msg){
+					if(app.searchResult[id]){
+						app.searchResult[id].reviews=json.reviews;
+						app.searchResult[id].tickets=json.tickets;
+					}else{
+						app.searchResult[id]=json;
+					}
+					
+					showEventDetail(app.searchResult[id]);
+				}else{
+					console.log("[ERROR] getEventDetail: "+json.msg);
+				}
+			});
+		}
 	}
 }
 
@@ -688,16 +706,6 @@ function getEventDetail(e){
  */
 function showEventDetail(evt){	
 
-	//save event to cookie
-	//something wrong with the cookie. cannot save the whole evt correctly.
-	if(!app.readCookie){
-		console.log("write cookie");
-		//$.removeCookie("CityBuddy",{ expires: 7, path: '/' })
-		$.cookie("CityBuddy", {'eventID': evt.id},{ expires: 7, path: '/' });
-	}
-
-
-	
 	//event info
 	var $target=$("#detail_meta"),
 		html_info="<li class='detail-title'>"+evt.title+"</li>"+
@@ -705,10 +713,12 @@ function showEventDetail(evt){
 				  "<li class='detail-location'>"+evt.venue.name + "<br><label>"+evt.venue.address+"</label></li>"+
 				  "<li class='detail-description'>"+evt.description + "</li>";
 				  
+	var objs={};
+				  
 	$target.find(".event-image img").attr("src", evt.thumbnail);
 	$target.find(".event-info > ul").html(html_info);
 	
-	
+
 	
 	//event photos and comments from social media
 	if(evt.reviews){
@@ -720,25 +730,38 @@ function showEventDetail(evt){
 				//parse comments
 				$.each(comments, function(i,obj){
 					//console.log(obj)
-					html_media+=composeMediaWallHtml(obj.photos)
+					html_media+=composeMediaWallHtml(obj.images)
 					html_media+=composeMediaWallHtml(obj.videos)
 					
+					html_comment+=composeCommentHtml(obj)
 				});
 			}
 			
-		})
-		$("#detail_mediaWall").append(html_media);
+		});
+		
+		$("#detail_mediaWall").html("<h3>Media from Twitter & Facebook</h3>"+html_media);
+		$("#detail_comment > ul").html(html_comment).listview();
 	}
 
 
 	
+	//comment
+	function composeCommentHtml(obj){
+		obj.profileImage=obj.profileImage || "images/1401336095_social_8.png"
+		
+		return "<li><a target='_blank' href='https://twitter.com/"+obj.username+"/status/"+obj.id+"'>"+
+				    "<img src='"+obj.profileImage+"'/>"+
+				    "<h2>"+obj.username+"</h2>"+
+				    "<p>"+obj.content+"</p>"+
+			   "</a></li>";
+	}
 	
-	//switch to page-eventDetail
-	changePage("#page-eventDetail");
+	
 	
 	
 	
 	//mediaWall
+
 	function composeMediaWallHtml(array){
 		var classes=["ui-block-a","ui-block-b","ui-block-c","ui-block-d"],
 			c="",
@@ -748,23 +771,32 @@ function showEventDetail(evt){
 		array=$.map(array, function(v,i){
 			//detemine class
 			c=classes[count % 4];
-			count++
+			
 			
 			result="";
 			
-			//determine source
-			var check=v.match('www.youtube.com') || v.match(/www.facebook.com\/photo.php\?v=(.*)/);
-			if (check){
-				if(check[0]=='www.youtube.com'){
-					result="<iframe class='opengraph-video'  src='https://www.youtube.com/embed/"+ decodeURIComponent(v+"&").match(/v=(.*)&/)[1].split('&')[0] +"' frameborder='0' allowfullscreen></iframe>";
-				}else{
-					result="<iframe class='opengraph-video' src='https://www.facebook.com/video/embed?video_id="+check[1]+"' frameborder='0' allowfullscreen></iframe>"; 
-				}
-			}else{
-				result="<img src='"+ v +"' />";
-			}
+
+			if(!objs[v]){
+				
+				count++
 			
-			return "<div class='item "+c+"'>"+result+"</div>";
+				//determine source
+				var check=v.match('www.youtube.com') || v.match(/www.facebook.com\/photo.php\?v=(.*)/);
+				if (check){
+					if(check[0]=='www.youtube.com'){
+						result="<iframe class='opengraph-video'  src='https://www.youtube.com/embed/"+ decodeURIComponent(v+"&").match(/v=(.*)&/)[1].split('&')[0] +"' frameborder='0' allowfullscreen></iframe>";
+					}else{
+						result="<iframe class='opengraph-video' src='https://www.facebook.com/video/embed?video_id="+check[1]+"' frameborder='0' allowfullscreen></iframe>"; 
+					}
+				}else{
+					result="<img src='"+ v +"' />";
+				}
+				
+				objs[v]=v;
+		
+				
+				return "<div class='item "+c+"'>"+result+"</div>";
+			}
 		});
 		return array.join("");
 	}
