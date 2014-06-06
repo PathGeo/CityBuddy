@@ -533,7 +533,7 @@ function searchEvent(options){
 	options.categories=trim(options.categories.split(","));
 	
 
-	var url=(app.testmode)?"db/template_queryEvent.json":"//www.pathgeo.com:8080/citybuddy/query?title="+options.titles.join(",")+"&startDate="+options.startDate+"&endDate="+options.endDate+"&categories="+options.categories.join(",")+"&performers="+options.performers.join(",")+"&venue="+options.venue +"&jsoncallback=?";
+	var url=(app.testmode)?"db/template_queryEvent.json":"http://www.pathgeo.com:8080/citybuddy/query?title="+options.titles.join(",")+"&startDate="+options.startDate+"&endDate="+options.endDate+"&categories="+options.categories.join(",")+"&performers="+options.performers.join(",")+"&venue="+options.venue +"&jsoncallback=?";
 	
 	//query event
 	$.getJSON(url, function(json){
@@ -674,7 +674,7 @@ function showSearchResult(results, showSlider){
  */
 function getEventDetail(id){
 	if(id && id!=''){
-		var url=(app.testmode)?"db/template_getEventDetail.json":"//www.pathgeo.com:8080/citybuddy/event/"+id+"?jsoncallback=?";
+		var url=(app.testmode)?"db/template_getEventDetail.json":"http://www.pathgeo.com:8080/citybuddy/event/"+id+"?jsoncallback=?";
 		
 		if(app.searchResult && app.searchResult[id] && app.searchResult[id].reviews){
 			showEventDetail(app.searchResult[id]);
