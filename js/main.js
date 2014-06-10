@@ -7,7 +7,7 @@ $.cookie.json=true;
 var app={
 	searchResult:{},
 	testmode:false,
-	socket:io.connect("http://www.pathgeo.com:8080/socket-citybuddy"),
+	socket:io.connect("http://www.pathgeo.com:8080/socket-citybuddy"}),
 	mediaWall: null,
 	readCookie:true, 
 	map : null,
