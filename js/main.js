@@ -680,9 +680,10 @@ function getEventDetail(id){
 			showEventDetail(app.searchResult[id]);
 		}else{
 			$.getJSON(url, function(json){
+				console.log(json)
 				if(json && !json.msg){
 					if(app.searchResult[id]){
-						app.searchResult[id].reviews=json.reviews;
+						app.searchResult[id].reviewTwitter=json.reviewTwitter;
 						app.searchResult[id].tickets=json.tickets;
 					}else{
 						app.searchResult[id]=json;
@@ -721,22 +722,15 @@ function showEventDetail(evt){
 
 	
 	//event photos and comments from social media
-	if(evt.reviews){
+	if(evt.reviewTwitter){
 		var medias={}, html_media="", html_comment="", count=0;
 		
-		$.each(evt.reviews, function(source, comments){
-			
-			if(source!='totalScore'){
-				//parse comments
-				$.each(comments, function(i,obj){
-					//console.log(obj)
-					html_media+=composeMediaWallHtml(obj.images)
-					html_media+=composeMediaWallHtml(obj.videos)
+		$.each(evt.reviewTwitter.tweets, function(i, obj){
+			//console.log(obj)
+			html_media+=composeMediaWallHtml(obj.images)
+			html_media+=composeMediaWallHtml(obj.videos)
 					
-					html_comment+=composeCommentHtml(obj)
-				});
-			}
-			
+			html_comment+=composeCommentHtml(obj)
 		});
 		
 		$("#detail_mediaWall").html("<h3>Media from Twitter & Facebook</h3>"+html_media);
@@ -768,37 +762,42 @@ function showEventDetail(evt){
 			isVideo=false,
 			result="";
 		
-		array=$.map(array, function(v,i){
-			//detemine class
-			c=classes[count % 4];
-			
-			
-			result="";
-			
-
-			if(!objs[v]){
+		if(array && typeof(array)==Array){
+			array=$.map(array, function(v,i){
+				//detemine class
+				c=classes[count % 4];
 				
-				count++
-			
-				//determine source
-				var check=v.match('www.youtube.com') || v.match(/www.facebook.com\/photo.php\?v=(.*)/);
-				if (check){
-					if(check[0]=='www.youtube.com'){
-						result="<iframe class='opengraph-video'  src='https://www.youtube.com/embed/"+ decodeURIComponent(v+"&").match(/v=(.*)&/)[1].split('&')[0] +"' frameborder='0' allowfullscreen></iframe>";
+				
+				result="";
+				
+	
+				if(!objs[v]){
+					
+					count++
+				
+					//determine source
+					var check=v.match('www.youtube.com') || v.match(/www.facebook.com\/photo.php\?v=(.*)/);
+					if (check){
+						if(check[0]=='www.youtube.com'){
+							result="<iframe class='opengraph-video'  src='https://www.youtube.com/embed/"+ decodeURIComponent(v+"&").match(/v=(.*)&/)[1].split('&')[0] +"' frameborder='0' allowfullscreen></iframe>";
+						}else{
+							result="<iframe class='opengraph-video' src='https://www.facebook.com/video/embed?video_id="+check[1]+"' frameborder='0' allowfullscreen></iframe>"; 
+						}
 					}else{
-						result="<iframe class='opengraph-video' src='https://www.facebook.com/video/embed?video_id="+check[1]+"' frameborder='0' allowfullscreen></iframe>"; 
+						result="<img src='"+ v +"' />";
 					}
-				}else{
-					result="<img src='"+ v +"' />";
+					
+					objs[v]=v;
+			
+					
+					return "<div class='item "+c+"'>"+result+"</div>";
 				}
-				
-				objs[v]=v;
+			});
+			return array.join("");
+		}else{
+			return ""
+		}
 		
-				
-				return "<div class='item "+c+"'>"+result+"</div>";
-			}
-		});
-		return array.join("");
 	}
 	
 }
