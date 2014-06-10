@@ -588,6 +588,7 @@ function showSearchResult(results, showSlider){
 		}
 	})
 
+
 	
 	//show results
 	$.each(groups, function(date, events){
@@ -607,9 +608,11 @@ function showSearchResult(results, showSlider){
 				venue=evt.venue,
 				reviews=evt.reviews,
 				score=(function(){
-					if(evt.totalScore){
+					if(evt.totalScore>=0){
 						var count=Math.round(evt.totalScore / 20);	
 						return new Array(count+1).join(star);
+					}else{
+						return ""
 					}
 				})(),
 				categories=$.map(evt.categories, function(v,i){return "<p class='tag'>"+v.name+"</p>"})
